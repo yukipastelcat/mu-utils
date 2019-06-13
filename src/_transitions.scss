@@ -1,4 +1,11 @@
-﻿@mixin u-transitions($values) {
+﻿@mixin u-transitions(
+  $responsive: false,
+  $pseudo: false,
+  $values: (
+    transform: transform 0.15s linear,
+    color: color 0.15s linear
+  )
+) {
   .u-transitionable {
     $transition: "";
     @each $key, $value in $values {
