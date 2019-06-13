@@ -1,4 +1,4 @@
-$u-css-settings: (
+$mu-utils-settings: (
   screens: (
     sm: 640px,
     md: 768px,
@@ -43,7 +43,7 @@ $u-css-settings: (
   }
   @if $is-responsive == true {
     $selector: slice-selector(#{&});
-    @each $screen, $size in map-get($u-css-settings, screens) {
+    @each $screen, $size in map-get($mu-utils-settings, screens) {
       @media (min-width: $size) {
         @at-root .#{$screen}\:#{$selector} {
           @content;
