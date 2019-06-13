@@ -1,5 +1,5 @@
 {
-  "name": "u-css",
+  "name": "mu-utils",
   "version": "0.9.0",
   "description": "ITCSS-compatible utilitary CSS written entirely in SCSS",
   "main": "main.scss",
