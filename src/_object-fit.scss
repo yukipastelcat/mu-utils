@@ -1,0 +1,22 @@
+﻿@mixin u-object-fit(
+  $responsive: false,
+  $pseudo: false,
+  $values: (
+    contain: contain,
+    cover: cover,
+    fill: fill,
+    none: none,
+    scale-down: scale-down
+  )
+) {
+  .u-object {
+    @each $key, $value in $values {
+      &-#{$key} {
+        @include ruleset($responsive) {
+          object-fit: $value;
+          @include pseudo-variants($pseudo);
+        }
+      }
+    }
+  }
+}

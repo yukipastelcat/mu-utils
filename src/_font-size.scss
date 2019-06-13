@@ -1,0 +1,22 @@
+﻿@mixin u-font-size(
+  $responsive: false,
+  $pseudo: false,
+  $values: (
+    xs: 14px,
+    base: 16px,
+    md: 18px,
+    lg: 20px,
+    xl: 24px
+  )
+) {
+  .u-text {
+    @each $key, $value in $values {
+      &-#{$key} {
+        @include ruleset($responsive) {
+          font-size: $value;
+          @include pseudo-variants($pseudo);
+        }
+      }
+    }
+  }
+}

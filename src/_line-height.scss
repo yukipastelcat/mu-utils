@@ -1,0 +1,23 @@
+﻿@mixin u-line-height(
+  $responsive: false,
+  $pseudo: false,
+  $values: (
+    none: 1,
+    tight: 1.25,
+    snug: 1.375,
+    normal: 1.5,
+    relaxed: 1.625,
+    loose: 2
+  )
+) {
+  .u-leading {
+    @each $key, $value in $values {
+      &-#{$key} {
+        @include ruleset($responsive) {
+          line-height: $value;
+          @include pseudo-variants($pseudo);
+        }
+      }
+    }
+  }
+}

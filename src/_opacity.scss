@@ -1,0 +1,22 @@
+﻿@mixin u-opacity(
+  $responsive: false,
+  $pseudo: false,
+  $values: (
+    0: 0,
+    25: 0.25,
+    50: 0.5,
+    75: 0.75,
+    100: 1
+  )
+) {
+  .u-opacity {
+    @each $key, $value in $values {
+      &-#{$key} {
+        @include ruleset($responsive) {
+          opacity: $value;
+          @include pseudo-variants($pseudo);
+        }
+      }
+    }
+  }
+}

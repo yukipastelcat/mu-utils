@@ -1,0 +1,19 @@
+﻿@mixin u-text-overflow(
+  $responsive: false,
+  $pseudo: false,
+  $values: (
+    clip: clip,
+    ellipsis: ellipsis
+  )
+) {
+  .u-text {
+    @each $key, $value in $values {
+      &-#{$key} {
+        @include ruleset($responsive) {
+          text-overflow: $value;
+          @include pseudo-variants($pseudo);
+        }
+      }
+    }
+  }
+}

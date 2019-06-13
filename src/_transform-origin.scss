@@ -1,0 +1,25 @@
+﻿@mixin u-transform-origin(
+  $responsive: false,
+  $pseudo: false,
+  $values: (
+    t: top,
+    tr: top right,
+    r: right,
+    br: bottom right,
+    b: bottom,
+    bl: bottom left,
+    l: left,
+    tl: top left
+  )
+) {
+  .u-transform {
+    @each $key, $value in $values {
+      &-#{$key} {
+        @include ruleset($responsive) {
+          transform-origin: $value;
+          @include pseudo-variants($pseudo);
+        }
+      }
+    }
+  }
+}

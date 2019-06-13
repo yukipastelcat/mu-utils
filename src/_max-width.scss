@@ -1,0 +1,19 @@
+﻿@mixin u-max-width(
+  $responsive: false,
+  $pseudo: false,
+  $values: (
+    0: 0,
+    auto: auto
+  )
+) {
+  .u-max-w {
+    @each $key, $value in $values {
+      &-#{$key} {
+        @include ruleset($responsive) {
+          max-width: $value;
+          @include pseudo-variants($pseudo);
+        }
+      }
+    }
+  }
+}

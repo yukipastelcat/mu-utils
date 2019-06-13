@@ -1,0 +1,21 @@
+﻿@mixin u-position(
+  $responsive: false,
+  $pseudo: false,
+  $values: (
+    static: static,
+    fixed: fixed,
+    absolute: absolute,
+    relative: relative,
+    sticky: sticky
+  )
+) {
+  .u {
+    @each $key, $value in $values {
+      &-#{$key} {
+        @include ruleset($responsive) {
+          position: $value;
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,19 @@
+﻿@mixin u-font-style(
+  $responsive: false,
+  $pseudo: false,
+  $values: (
+    italic: italic,
+    non-italic: normal
+  )
+) {
+  .u {
+    @each $key, $value in $values {
+      &-#{$key} {
+        @include ruleset($responsive) {
+          font-style: $value;
+          @include pseudo-variants($pseudo);
+        }
+      }
+    }
+  }
+}

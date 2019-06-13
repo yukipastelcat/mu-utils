@@ -1,0 +1,23 @@
+﻿@mixin u-background-repeat(
+  $responsive: false,
+  $pseudo: false,
+  $values: (
+    repeat: repeat,
+    no-repeat: no-repeat,
+    repeat-x: repeat-x,
+    repeat-y: repeat-y,
+    repeat-round: round,
+    repeat-space: space
+  )
+) {
+  .u-bg {
+    @each $key, $value in $values {
+      &-#{$key} {
+        @include ruleset($responsive) {
+          background-repeat: $value;
+          @include pseudo-variants($pseudo);
+        }
+      }
+    }
+  }
+}

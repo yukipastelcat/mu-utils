@@ -1,0 +1,103 @@
+$u-css-settings: (
+  screens: (
+    sm: 640px,
+    md: 768px,
+    lg: 1024px,
+    xl: 1280px
+  )
+);
+
+@function slice-selector($selector) {
+  $length: str-length($selector);
+  @return str-slice($selector, 2, $length);
+}
+
+@mixin pseudo-variants($should-generate) {
+  @if $should-generate == true {
+    $selector: #{&};
+    $sliced-selector: slice-selector(#{&});
+    @at-root .hover#{"\\:"}#{$sliced-selector}:hover {
+      @extend #{$selector};
+    }
+    @at-root .focus#{"\\:"}#{$sliced-selector}:focus {
+      @extend #{$selector};
+    }
+    @at-root .active#{"\\:"}#{$sliced-selector}:active {
+      @extend #{$selector};
+    }
+    @at-root .group:hover .group-hover#{"\\:"}#{$sliced-selector} {
+      @extend #{$selector};
+    }
+    @at-root .group:active .group-active#{"\\:"}#{$sliced-selector} {
+      @extend #{$selector};
+    }
+    @at-root .focus-within#{"\\:"}#{$sliced-selector}:focus-within {
+      @extend #{$selector};
+    }
+  }
+}
+
+@mixin ruleset($is-responsive: false) {
+  & {
+    @content;
+  }
+  @if $is-responsive == true {
+    $selector: slice-selector(#{&});
+    @each $screen, $size in map-get($u-css-settings, screens) {
+      @media (min-width: $size) {
+        @at-root .#{$screen}\:#{$selector} {
+          @content;
+        }
+      }
+    }
+  }
+}
+
+// #region LAYOUT
+@import "src/container", "src/display", "src/float", "src/overflow", "src/position", "src/pin", "src/box-sizing",
+  "src/aspect-ratio", "src/z-index", "src/object-fit";
+// #endregion LAYOUT
+
+// #region TYPOGRAPHY
+@import "src/font-family", "src/font-size", "src/font-style", "src/font-weight", "src/letter-spacing", "src/line-height",
+  "src/list-style-type", "src/list-style-position", "src/text-align", "src/text-color", "src/text-decoration",
+  "src/text-transform", "src/text-overflow", "src/vertical-align", "src/whitespace", "src/word-break";
+// #endregion TYPOGRAPHY
+
+// #region BACKGROUNDS
+@import "src/background-attachment", "src/background-color", "src/background-position", "src/background-repeat",
+  "src/background-size";
+// #endregion BACKGROUNDS
+
+// #region BORDERS
+@import "src/border-color", "src/border-style", "src/border-width", "src/border-radius";
+// #endregion BORDERS
+
+// #region FLEXBOX
+@import "src/flex-direction", "src/flex-wrap", "src/align-items", "src/align-content", "src/align-self",
+  "src/justify-content", "src/flex", "src/flex-grow", "src/flex-shrink", "src/order";
+// #endregion FLEXBOX
+
+// #region SPACING
+@import "src/padding", "src/margin";
+// #endregion SPACING
+
+// #region SIZING
+@import "src/width", "src/min-width", "src/max-width", "src/height", "src/min-height", "src/max-height";
+// #endregion SIZING
+
+// #region EFFECTS
+@import "src/opacity", "src/box-shadow";
+// #endregion EFFECTS
+
+// #region INTERACTIVITY
+@import "src/pointer-events", "src/resize", "src/outline", "src/cursor";
+// #endregion INTERACTIVITY
+
+// #region TRANSFORM
+@import "src/transform", "src/transform-origin", "src/translate", "src/scale", "src/rotate";
+// #endregion TRANSFORM
+
+// #region TRANSITIONS
+@import "src/transitions";
+// #endregion TRANSITIONS

@@ -1,0 +1,20 @@
+﻿@mixin u-flex-wrap(
+  $responsive: false,
+  $pseudo: false,
+  $values: (
+    no-wrap: nowrap,
+    wrap: wrap,
+    wrap-reverse: wrap-reverse
+  )
+) {
+  .u-flex {
+    @each $key, $value in $values {
+      &-#{$key} {
+        @include ruleset($responsive) {
+          flex-wrap: $value;
+          @include pseudo-variants($pseudo);
+        }
+      }
+    }
+  }
+}

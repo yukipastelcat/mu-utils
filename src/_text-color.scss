@@ -1,0 +1,19 @@
+﻿@mixin u-text-color(
+  $responsive: false,
+  $pseudo: false,
+  $values: (
+    0: 0,
+    auto: auto
+  )
+) {
+  .u-text {
+    @each $key, $value in $values {
+      &-#{$key} {
+        @include ruleset($responsive) {
+          color: $value;
+          @include pseudo-variants($pseudo);
+        }
+      }
+    }
+  }
+}

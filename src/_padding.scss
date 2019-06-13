@@ -1,0 +1,57 @@
+﻿@mixin u-padding(
+  $responsive: false,
+  $pseudo: false,
+  $values: (
+    0: 0,
+    auto: auto
+  )
+) {
+  .u-p {
+    @each $key, $value in $values {
+      &-#{$key} {
+        @include ruleset($responsive) {
+          padding: $value;
+          @include pseudo-variants($pseudo);
+        }
+      }
+      &x-#{$key} {
+        @include ruleset($responsive) {
+          padding-left: $value;
+          padding-right: $value;
+          @include pseudo-variants($pseudo);
+        }
+      }
+      &y-#{$key} {
+        @include ruleset($responsive) {
+          padding-top: $value;
+          padding-bottom: $value;
+          @include pseudo-variants($pseudo);
+        }
+      }
+      &t-#{$key} {
+        @include ruleset($responsive) {
+          padding-top: $value;
+          @include pseudo-variants($pseudo);
+        }
+      }
+      &r-#{$key} {
+        @include ruleset($responsive) {
+          padding-right: $value;
+          @include pseudo-variants($pseudo);
+        }
+      }
+      &l-#{$key} {
+        @include ruleset($responsive) {
+          padding-left: $value;
+          @include pseudo-variants($pseudo);
+        }
+      }
+      &b-#{$key} {
+        @include ruleset($responsive) {
+          padding-bottom: $value;
+          @include pseudo-variants($pseudo);
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,16 @@
+﻿@mixin u-transform(
+  $responsive: false,
+  $pseudo: false,
+  $values: (
+    none: none
+  )
+) {
+  .u-transform {
+    @each $key, $value in $values {
+      @include ruleset($responsive) {
+        transform: $value;
+        @include pseudo-variants($pseudo);
+      }
+    }
+  }
+}

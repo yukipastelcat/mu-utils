@@ -1,0 +1,27 @@
+﻿@mixin u-transitions($values) {
+  .u-transitionable {
+    $transition: "";
+    @each $key, $value in $values {
+      --#{$key}: display 0s linear; // Fake transform
+      $i: index($key, $values);
+      $transition: #{$transition + var(--#{$key})};
+      @if ($i != 0) {
+        $transition: #{$transition + ", "};
+      }
+    }
+    @include ruleset($responsive) {
+      transition: $transition;
+      @include pseudo-variants($pseudo);
+    }
+  }
+  .u-transition {
+    @each $key, $value in $values {
+      &-#{$key} {
+        @include ruleset($responsive) {
+          --#{$key}: #{$value};
+          @include pseudo-variants($pseudo);
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,18 @@
+﻿@mixin u-pointer-events(
+  $responsive: false,
+  $pseudo: false,
+  $values: (
+    none: none,
+    auto: auto
+  )
+) {
+  .u-pointer-events {
+    @each $key, $value in $values {
+      &-#{$key} {
+        @include ruleset($responsive) {
+          pointer-events: $value;
+        }
+      }
+    }
+  }
+}

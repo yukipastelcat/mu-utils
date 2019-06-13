@@ -1,0 +1,105 @@
+﻿@mixin u-margin(
+  $responsive: false,
+  $pseudo: false,
+  $values: (
+    0: 0,
+    auto: auto
+  )
+) {
+  .u-m {
+    @each $key, $value in $values {
+      &-#{$key} {
+        @include ruleset($responsive) {
+          margin: $value;
+          @include pseudo-variants($pseudo);
+        }
+      }
+      &x-#{$key} {
+        @include ruleset($responsive) {
+          margin-left: $value;
+          margin-right: $value;
+          @include pseudo-variants($pseudo);
+        }
+      }
+      &y-#{$key} {
+        @include ruleset($responsive) {
+          margin-top: $value;
+          margin-bottom: $value;
+          @include pseudo-variants($pseudo);
+        }
+      }
+      &t-#{$key} {
+        @include ruleset($responsive) {
+          margin-top: $value;
+          @include pseudo-variants($pseudo);
+        }
+      }
+      &r-#{$key} {
+        @include ruleset($responsive) {
+          margin-right: $value;
+          @include pseudo-variants($pseudo);
+        }
+      }
+      &l-#{$key} {
+        @include ruleset($responsive) {
+          margin-left: $value;
+          @include pseudo-variants($pseudo);
+        }
+      }
+      &b-#{$key} {
+        @include ruleset($responsive) {
+          margin-bottom: $value;
+          @include pseudo-variants($pseudo);
+        }
+      }
+    }
+  }
+  .u-n-m {
+    @each $key, $value in $values {
+      &-#{$key} {
+        @include ruleset($responsive) {
+          margin: -$value;
+          @include pseudo-variants($pseudo);
+        }
+      }
+      &x-#{$key} {
+        @include ruleset($responsive) {
+          margin-left: -$value;
+          margin-right: -$value;
+          @include pseudo-variants($pseudo);
+        }
+      }
+      &y-#{$key} {
+        @include ruleset($responsive) {
+          margin-top: -$value;
+          margin-bottom: -$value;
+          @include pseudo-variants($pseudo);
+        }
+      }
+      &t-#{$key} {
+        @include ruleset($responsive) {
+          margin-top: -$value;
+          @include pseudo-variants($pseudo);
+        }
+      }
+      &r-#{$key} {
+        @include ruleset($responsive) {
+          margin-right: -$value;
+          @include pseudo-variants($pseudo);
+        }
+      }
+      &l-#{$key} {
+        @include ruleset($responsive) {
+          margin-left: -$value;
+          @include pseudo-variants($pseudo);
+        }
+      }
+      &b-#{$key} {
+        @include ruleset($responsive) {
+          margin-bottom: -$value;
+          @include pseudo-variants($pseudo);
+        }
+      }
+    }
+  }
+}

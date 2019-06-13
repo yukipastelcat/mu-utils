@@ -1,0 +1,23 @@
+﻿@mixin u-cursor(
+  $responsive: false,
+  $pseudo: false,
+  $values: (
+    auto: auto,
+    default: default,
+    pointer: pointer,
+    text: text,
+    move: move,
+    not-allowed: not-allowed
+  )
+) {
+  .u-cursor {
+    @each $key, $value in $values {
+      &-#{$key} {
+        @include ruleset($responsive) {
+          cursor: $value;
+          @include pseudo-variants($pseudo);
+        }
+      }
+    }
+  }
+}

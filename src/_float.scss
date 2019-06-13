@@ -1,0 +1,31 @@
+﻿@mixin u-float(
+  $responsive: false,
+  $pseudo: false,
+  $values: (
+    left: left,
+    right: right,
+    none: none
+  )
+) {
+  .u-float {
+    @each $key, $value in $values {
+      &-#{$key} {
+        @include ruleset($responsive) {
+          float: $value;
+          @include pseudo-variants($pseudo);
+        }
+      }
+    }
+  }
+
+  .u-clearfix {
+    @include ruleset($responsive) {
+      &::after {
+        content: "";
+        display: table;
+        clear: both;
+      }
+      @include pseudo-variants($pseudo);
+    }
+  }
+}

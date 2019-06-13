@@ -1,0 +1,20 @@
+﻿@mixin u-box-sizing(
+  $responsive: false,
+  $pseudo: false,
+  $values: (
+    content: content-box,
+    border: border-box,
+    padding: padding-box
+  )
+) {
+  .u-box {
+    @each $key, $value in $values {
+      &-#{$key} {
+        @include ruleset($responsive) {
+          box-sizing: $value;
+          @include pseudo-variants($pseudo);
+        }
+      }
+    }
+  }
+}

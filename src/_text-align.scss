@@ -1,0 +1,20 @@
+﻿@mixin u-text-align(
+  $responsive: false,
+  $pseudo: false,
+  $values: (
+    left: left,
+    center: center,
+    right: right,
+    justify: justify
+  )
+) {
+  .u-text {
+    @each $key, $value in $values {
+      &-#{$key} {
+        @include ruleset($responsive) {
+          text-align: $value;
+        }
+      }
+    }
+  }
+}

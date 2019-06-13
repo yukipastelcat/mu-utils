@@ -1,0 +1,19 @@
+﻿@mixin u-flex-shrink(
+  $responsive: false,
+  $pseudo: false,
+  $values: (
+    shrink: 1,
+    shrink-0: 0
+  )
+) {
+  .u-flex {
+    @each $key, $value in $values {
+      &-#{$key} {
+        @include ruleset($responsive) {
+          flex-shrink: $value;
+          @include pseudo-variants($pseudo);
+        }
+      }
+    }
+  }
+}

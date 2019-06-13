@@ -1,0 +1,22 @@
+﻿@mixin u-whitespace(
+  $responsive: false,
+  $pseudo: false,
+  $values: (
+    normal: normal,
+    no-wrap: nowrap,
+    pre: pre,
+    pre-line: pre-line,
+    pre-wrap: pre-wrap
+  )
+) {
+  .u-whitespace {
+    @each $key, $value in $values {
+      &-#{$key} {
+        @include ruleset($responsive) {
+          white-space: $value;
+          @include pseudo-variants($pseudo);
+        }
+      }
+    }
+  }
+}

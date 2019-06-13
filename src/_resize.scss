@@ -1,0 +1,24 @@
+﻿@mixin u-resize(
+  $responsive: false,
+  $pseudo: false,
+  $values: (
+    none: none,
+    "": both,
+    y: vertical,
+    x: horizontal
+  )
+) {
+  .u-resize {
+    @each $prefix, $value in $values {
+      $key: "";
+      @if ($prefix != "") {
+        $key: #{"-"}#{$prefix};
+      }
+      &#{$key} {
+        @include ruleset($responsive) {
+          resize: $value;
+        }
+      }
+    }
+  }
+}

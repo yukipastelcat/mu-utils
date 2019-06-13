@@ -1,0 +1,22 @@
+﻿@mixin u-justify-content(
+  $responsive: false,
+  $pseudo: false,
+  $values: (
+    start: flex-start,
+    center: center,
+    end: flex-end,
+    between: space-between,
+    around: space-around
+  )
+) {
+  .u-justify {
+    @each $key, $value in $values {
+      &-#{$key} {
+        @include ruleset($responsive) {
+          justify-content: $value;
+          @include pseudo-variants($pseudo);
+        }
+      }
+    }
+  }
+}

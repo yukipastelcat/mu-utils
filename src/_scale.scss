@@ -1,0 +1,18 @@
+﻿@mixin u-scale(
+  $responsive: false,
+  $pseudo: false,
+  $values: (
+    0: 0,
+    1: 1
+  )
+) {
+  .u-scale {
+    @each $key, $value in $values {
+      &-#{$key} {
+        @include ruleset($responsive) {
+          transform: scale($value);
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,73 @@
+﻿@mixin u-border-width(
+  $responsive: false,
+  $pseudo: false,
+  $values: (
+    0: 0,
+    2: 2px,
+    4: 4px,
+    8: 8px
+  )
+) {
+  .u-border {
+    @include ruleset($responsive) {
+      border-width: 1px;
+      @include pseudo-variants($pseudo);
+    }
+    &-t {
+      @include ruleset($responsive) {
+        border-top-width: 1px;
+        @include pseudo-variants($pseudo);
+      }
+    }
+    &-r {
+      @include ruleset($responsive) {
+        border-right-width: 1px;
+        @include pseudo-variants($pseudo);
+      }
+    }
+    &-l {
+      @include ruleset($responsive) {
+        border-left-width: 1px;
+        @include pseudo-variants($pseudo);
+      }
+    }
+    &-b {
+      @include ruleset($responsive) {
+        border-bottom-width: 1px;
+        @include pseudo-variants($pseudo);
+      }
+    }
+    @each $key, $value in $values {
+      &-#{$key} {
+        @include ruleset($responsive) {
+          border-width: $value;
+          @include pseudo-variants($pseudo);
+        }
+      }
+      &-t-#{$key} {
+        @include ruleset($responsive) {
+          border-top-width: $value;
+          @include pseudo-variants($pseudo);
+        }
+      }
+      &-r-#{$key} {
+        @include ruleset($responsive) {
+          border-right-width: $value;
+          @include pseudo-variants($pseudo);
+        }
+      }
+      &-l-#{$key} {
+        @include ruleset($responsive) {
+          border-left-width: $value;
+          @include pseudo-variants($pseudo);
+        }
+      }
+      &-b-#{$key} {
+        @include ruleset($responsive) {
+          border-bottom-width: $value;
+          @include pseudo-variants($pseudo);
+        }
+      }
+    }
+  }
+}

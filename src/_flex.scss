@@ -1,0 +1,21 @@
+﻿@mixin u-flex(
+  $responsive: false,
+  $pseudo: false,
+  $values: (
+    initial: #{"0 1 auto"},
+    1: #{"1 1 0%"},
+    auto: #{"1 1 auto"},
+    none: none
+  )
+) {
+  .u-flex {
+    @each $key, $value in $values {
+      &-#{$key} {
+        @include ruleset($responsive) {
+          flex: $value;
+          @include pseudo-variants($pseudo);
+        }
+      }
+    }
+  }
+}

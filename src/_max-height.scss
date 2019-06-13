@@ -1,0 +1,19 @@
+﻿@mixin u-max-height(
+  $responsive: false,
+  $pseudo: false,
+  $values: (
+    0: 0,
+    auto: auto
+  )
+) {
+  .u-max-h {
+    @each $key, $value in $values {
+      &-#{$key} {
+        @include ruleset($responsive) {
+          max-height: $value;
+          @include pseudo-variants($pseudo);
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,15 @@
+{
+  "name": "u-css",
+  "version": "0.9.0",
+  "description": "ITCSS-compatible utilitary CSS written entirely in SCSS",
+  "main": "main.scss",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "utilitary-css",
+    "scss"
+  ],
+  "author": "yukipastelcat, Egor Vdovenko",
+  "license": "MIT"
+}

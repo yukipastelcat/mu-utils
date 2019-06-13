@@ -1,0 +1,20 @@
+﻿@mixin u-aspect(
+  $responsive: false,
+  $pseudo: false,
+  $values: (
+    16\%9: 100% * 16 / 9,
+    4\%3: 100% * 4 / 3,
+    1\%1: 100%
+  )
+) {
+  .u-aspect {
+    @each $key, $value in $values {
+      &-#{$key} {
+        @include ruleset($responsive) {
+          padding-top: $value;
+          @include pseudo-variants($pseudo);
+        }
+      }
+    }
+  }
+}

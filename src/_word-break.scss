@@ -1,0 +1,32 @@
+﻿@mixin u-word-break($responsive: false, $pseudo: false) {
+  .u-break {
+    &-normal {
+      @include ruleset($responsive) {
+        word-break: normal;
+        overflow-wrap: normal;
+        @include pseudo-variants($pseudo);
+      }
+    }
+    &-words {
+      @include ruleset($responsive) {
+        overflow-wrap: break-word;
+        @include pseudo-variants($pseudo);
+      }
+    }
+    &-all {
+      @include ruleset($responsive) {
+        word-break: normal;
+        @include pseudo-variants($pseudo);
+      }
+    }
+  }
+
+  .u-truncate {
+    @include ruleset($responsive) {
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      @include pseudo-variants($pseudo);
+    }
+  }
+}

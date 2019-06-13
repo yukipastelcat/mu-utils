@@ -1,0 +1,23 @@
+﻿@mixin u-vertical-align(
+  $responsive: false,
+  $pseudo: false,
+  $values: (
+    baseline: baseline,
+    top: top,
+    middle: middle,
+    bottom: bottom,
+    text-top: text-top,
+    text-bottom: text-bottom
+  )
+) {
+  .u-align {
+    @each $key, $value in $values {
+      &-#{$key} {
+        @include ruleset($responsive) {
+          vertical-align: $value;
+          @include pseudo-variants($pseudo);
+        }
+      }
+    }
+  }
+}

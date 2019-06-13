@@ -1,0 +1,20 @@
+﻿@mixin u-text-decoration(
+  $responsive: false,
+  $pseudo: false,
+  $values: (
+    underline: underline,
+    line-through: line-through,
+    no-underline: none
+  )
+) {
+  .u-text {
+    @each $key, $value in $values {
+      &-#{$key} {
+        @include ruleset($responsive) {
+          text-decoration: $value;
+          @include pseudo-variants($pseudo);
+        }
+      }
+    }
+  }
+}

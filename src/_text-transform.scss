@@ -1,0 +1,21 @@
+﻿@mixin u-text-transform(
+  $responsive: false,
+  $pseudo: false,
+  $values: (
+    uppercase: uppercase,
+    lowercase: lowercase,
+    capitalize: capitalize,
+    normal-case: none
+  )
+) {
+  .u {
+    @each $key, $value in $values {
+      &-#{$key} {
+        @include ruleset($responsive) {
+          text-transform: $value;
+          @include pseudo-variants($pseudo);
+        }
+      }
+    }
+  }
+}

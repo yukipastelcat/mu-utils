@@ -1,0 +1,20 @@
+﻿@mixin u-background-size(
+  $responsive: false,
+  $pseudo: false,
+  $values: (
+    auto: auto,
+    cover: cover,
+    contain: contain
+  )
+) {
+  .u-bg {
+    @each $key, $value in $values {
+      &-#{$key} {
+        @include ruleset($responsive) {
+          background-size: $value;
+          @include pseudo-variants($pseudo);
+        }
+      }
+    }
+  }
+}

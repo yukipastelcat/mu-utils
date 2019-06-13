@@ -1,0 +1,19 @@
+﻿@mixin u-width(
+  $responsive: false,
+  $pseudo: false,
+  $values: (
+    0: 0,
+    auto: auto
+  )
+) {
+  .u-w {
+    @each $key, $value in $values {
+      &-#{$key} {
+        @include ruleset($responsive) {
+          width: $value;
+          @include pseudo-variants($pseudo);
+        }
+      }
+    }
+  }
+}

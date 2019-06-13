@@ -1,0 +1,80 @@
+@mixin u-border-radius(
+  $responsive: false,
+  $pseudo: false,
+  $values: (
+    none: 0,
+    sm: 2px,
+    "": 4px,
+    md: 6px,
+    lg: 8px,
+    xl: 10px,
+    full: 9999px
+  )
+) {
+  .u-rounded {
+    @each $prefix, $value in $values {
+      $key: "";
+      @if ($prefix != "") {
+        $key: #{"-"}#{$prefix};
+      }
+      &#{$key} {
+        @include ruleset($responsive) {
+          border-radius: $value;
+          @include pseudo-variants($pseudo);
+        }
+      }
+      &-t#{$key} {
+        @include ruleset($responsive) {
+          border-top-left-radius: $value;
+          border-top-right-radius: $value;
+          @include pseudo-variants($pseudo);
+        }
+      }
+      &-r#{$key} {
+        @include ruleset($responsive) {
+          border-top-right-radius: $value;
+          border-bottom-right-radius: $value;
+          @include pseudo-variants($pseudo);
+        }
+      }
+      &-b#{$key} {
+        @include ruleset($responsive) {
+          border-bottom-right-radius: $value;
+          border-bottom-left-radius: $value;
+          @include pseudo-variants($pseudo);
+        }
+      }
+      &-l#{$key} {
+        @include ruleset($responsive) {
+          border-top-left-radius: $value;
+          border-bottom-left-radius: $value;
+          @include pseudo-variants($pseudo);
+        }
+      }
+      &-tl#{$key} {
+        @include ruleset($responsive) {
+          border-top-left-radius: $value;
+          @include pseudo-variants($pseudo);
+        }
+      }
+      &-tr#{$key} {
+        @include ruleset($responsive) {
+          border-top-right-radius: $value;
+          @include pseudo-variants($pseudo);
+        }
+      }
+      &-br#{$key} {
+        @include ruleset($responsive) {
+          border-bottom-right-radius: $value;
+          @include pseudo-variants($pseudo);
+        }
+      }
+      &-bl#{$key} {
+        @include ruleset($responsive) {
+          border-bottom-left-radius: $value;
+          @include pseudo-variants($pseudo);
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,21 @@
+﻿@mixin u-border-style(
+  $responsive: false,
+  $pseudo: false,
+  $values: (
+    solid: solid,
+    dashed: dashed,
+    dotted: dotted,
+    none: none
+  )
+) {
+  .u-border {
+    @each $key, $value in $values {
+      &-#{$key} {
+        @include ruleset($responsive) {
+          border-style: $value;
+          @include pseudo-variants($pseudo);
+        }
+      }
+    }
+  }
+}

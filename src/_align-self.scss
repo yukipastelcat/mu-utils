@@ -1,0 +1,22 @@
+﻿@mixin u-align-self(
+  $responsive: false,
+  $pseudo: false,
+  $values: (
+    auto: auto,
+    start: flex-start,
+    center: center,
+    end: flex-end,
+    stretch: stretch
+  )
+) {
+  .u-self {
+    @each $key, $value in $values {
+      &-#{$key} {
+        @include ruleset($responsive) {
+          align-content: $value;
+          @include pseudo-variants($pseudo);
+        }
+      }
+    }
+  }
+}
