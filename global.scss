@@ -1,0 +1,150 @@
+﻿$mu-screens: (
+  sm: 600px,
+  md: 720px
+) !global;
+
+$mu-utilities: () !global;
+$mu-hover-utilities: () !global;
+$mu-focus-utilities: () !global;
+$mu-active-utilities: () !global;
+$mu-group-hover-utilities: () !global;
+$mu-group-active-utilities: () !global;
+$mu-focus-within-utilities: () !global;
+$mu-responsive-utilities: () !global;
+
+@mixin mu-parse-ruleset($ruleset) {
+  @each $key, $value in $ruleset {
+    #{$key}: #{$value};
+  }
+}
+
+@function mu-add-ruleset($map, $name, $ruleset) {
+  $map: map-merge(
+    $map,
+    (
+      $name: $ruleset
+    )
+  );
+  @return $map;
+}
+
+@mixin mu-add-pseudo-variants($name, $ruleset, $variants: (), $screens: ()) {
+  @each $variant in $variants {
+    $variant-name: "";
+    $variant-map: ();
+    @debug #{$name} #{$variant};
+    @if $variant == hover {
+      $variant-name: "hover\\:#{$name}:hover";
+      $mu-hover-utilities: mu-add-ruleset($mu-hover-utilities, $variant-name, $ruleset) !global;
+    }
+    @if $variant == focus {
+      $variant-name: "focus\\:#{$name}:focus";
+      $mu-focus-utilities: mu-add-ruleset($mu-focus-utilities, $variant-name, $ruleset) !global;
+    }
+    @if $variant == active {
+      $variant-name: "active\\:#{$name}:active";
+      $mu-active-utilities: mu-add-ruleset($mu-active-utilities, $variant-name, $ruleset) !global;
+    }
+    @if $variant == group-hover {
+      $variant-name: "group:hover .group-hover\\:#{$name}";
+      $mu-group-hover-utilities: mu-add-ruleset($mu-group-hover-utilities, $variant-name, $ruleset) !global;
+    }
+    @if $variant == group-active {
+      $variant-name: "group:active .group-active\\:#{$name}";
+      $mu-group-active-utilities: mu-add-ruleset($mu-group-active-utilities, $variant-name, $ruleset) !global;
+    }
+    @if $variant == focus-within {
+      $variant-name: "focus-within\\:#{$name}";
+      $mu-focus-within-utilities: mu-add-ruleset($mu-focus-within-utilities, $variant-name, $ruleset) !global;
+    }
+    @if length($screens) > 0 {
+      @include mu-create-responsive-variants($variant-name, $ruleset, $screens);
+    }
+  }
+}
+
+@mixin mu-add-responsive-variants($name, $ruleset, $screens: ()) {
+  @each $screen in $screens {
+    $size: map-get($mu-screens, $screen);
+    @if $size != null {
+      @if map-has-key($mu-responsive-utilities, $screen) {
+        @debug Using existing key for #{$screen}\: #{$name};
+      } @else {
+        $mu-responsive-utilities: map-merge(
+          $mu-responsive-utilities,
+          (
+            $screen: ()
+          )
+        ) !global;
+      }
+      $screen-map: map-get($mu-responsive-utilities, $screen);
+      $screen-map: map-merge(
+        $screen-map,
+        (
+          "#{$screen}\:#{$name}": $ruleset
+        )
+      );
+      $mu-responsive-utilities: map-merge(
+        $mu-responsive-utilities,
+        (
+          $screen: $screen-map
+        )
+      ) !global;
+    }
+  }
+}
+
+@mixin mu-add-utility($name, $ruleset) {
+  $mu-utilities: map-merge(
+    $mu-utilities,
+    (
+      $name: $ruleset
+    )
+  ) !global;
+}
+
+@mixin mu-create-utility($name, $ruleset, $variants: (), $screens: ()) {
+  @include mu-add-utility($name, $ruleset);
+  @include mu-add-responsive-variants($name, $ruleset, $screens);
+  @include mu-add-pseudo-variants($name, $ruleset, $variants, $screens);
+}
+
+@mixin mu-generate-utility($name, $ruleset) {
+  .#{$name} {
+    @include mu-parse-ruleset($ruleset);
+  }
+}
+
+@mixin mu-init() {
+  @each $name, $ruleset in $mu-utilities {
+    @include mu-generate-utility($name, $ruleset);
+  }
+  @each $name, $ruleset in $mu-hover-utilities {
+    @include mu-generate-utility($name, $ruleset);
+  }
+  @each $name, $ruleset in $mu-focus-utilities {
+    @include mu-generate-utility($name, $ruleset);
+  }
+  @each $name, $ruleset in $mu-active-utilities {
+    @include mu-generate-utility($name, $ruleset);
+  }
+  @each $name, $ruleset in $mu-group-hover-utilities {
+    @include mu-generate-utility($name, $ruleset);
+  }
+  @each $name, $ruleset in $mu-group-active-utilities {
+    @include mu-generate-utility($name, $ruleset);
+  }
+  @each $name, $ruleset in $mu-focus-within-utilities {
+    @include mu-generate-utility($name, $ruleset);
+  }
+  @each $screen, $size in $mu-screens {
+    $utils: map-get($mu-responsive-utilities, $screen);
+    @if $utils != null {
+      @media (min-width: $size) {
+        @each $name, $ruleset in $utils {
+          @include mu-generate-utility($name, $ruleset);
+        }
+      }
+    }
+  }
+}

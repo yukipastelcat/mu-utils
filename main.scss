@@ -7,6 +7,8 @@ $mu-utils-settings: (
   )
 );
 
+$mu-responsive-placeholders: ();
+
 @function slice-selector($selector) {
   $length: str-length($selector);
   @return str-slice($selector, 2, $length);
@@ -44,8 +46,10 @@ $mu-utils-settings: (
   @if $is-responsive == true {
     $selector: slice-selector(#{&});
     @each $screen, $size in map-get($mu-utils-settings, screens) {
-      @media (min-width: $size) {
-        @at-root .#{$screen}\:#{$selector} {
+      $placeholder: #{$screen}\: #{$selector};
+      $mu-responsive-placeholders: append($mu-responsive-placeholders, $placeholder);
+      @at-root %#{$screen}\:#{$selector} {
+        @media (min-width: $size) {
           @content;
         }
       }
@@ -101,3 +105,9 @@ $mu-utils-settings: (
 // #region TRANSITIONS
 @import "src/transitions";
 // #endregion TRANSITIONS
+
+@each $placeholder in $placeholders {
+  .#{$placeholder} {
+    @extend %#{$placeholder};
+  }
+}

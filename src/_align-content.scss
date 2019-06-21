@@ -1,6 +1,6 @@
-﻿@mixin u-align-content(
-  $responsive: false,
-  $pseudo: false,
+﻿@mixin mu-align-content(
+  $pseudo: (),
+  $responsive: (),
   $values: (
     start: flex-start,
     center: center,
@@ -9,14 +9,14 @@
     around: space-around
   )
 ) {
-  .u-content {
-    @each $key, $value in $values {
-      &-#{$key} {
-        @include ruleset($responsive) {
-          align-content: $value;
-          @include pseudo-variants($pseudo);
-        }
-      }
-    }
+  @each $key, $value in $values {
+    @include mu-create-utility(
+      u-align-content-#{$key},
+      (
+        align-content: $value
+      ),
+      $pseudo,
+      $responsive
+    );
   }
 }
