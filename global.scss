@@ -81,7 +81,7 @@ $mu-responsive-utilities: () !global;
       $screen-map: map-merge(
         $screen-map,
         (
-          "#{$screen}\:#{$name}": $ruleset
+          "#{$screen}\\:#{$name}": $ruleset
         )
       );
       $mu-responsive-utilities: map-merge(
