@@ -1,3 +1,100 @@
+@mixin mu-border-radius(
+  $pseudo: (),
+  $responsive: (),
+  $values: (
+    none: 0,
+    sm: 2px,
+    "": 4px,
+    md: 6px,
+    lg: 8px,
+    xl: 10px,
+    full: 9999px
+  )
+) {
+  @each $prefix, $value in $values {
+    $key: "";
+    @if ($prefix != "") {
+      $key: #{"-"}#{$prefix};
+    }
+    @include mu-create-utility(
+      u-#{$key},
+      (
+        border-radius: $value
+      ),
+      $pseudo,
+      $responsive
+    );
+    @include mu-create-utility(
+      u-t#{$key},
+      (
+        border-top-left-radius: $value,
+        border-top-right-radius: $value
+      ),
+      $pseudo,
+      $responsive
+    );
+    @include mu-create-utility(
+      u-r#{$key},
+      (
+        border-top-right-radius: $value,
+        border-bottom-right-radius: $value
+      ),
+      $pseudo,
+      $responsive
+    );
+    @include mu-create-utility(
+      u-b#{$key},
+      (
+        border-bottom-right-radius: $value,
+        border-bottom-left-radius: $value
+      ),
+      $pseudo,
+      $responsive
+    );
+    @include mu-create-utility(
+      u-l#{$key},
+      (
+        border-top-left-radius: $value,
+        border-bottom-left-radius: $value
+      ),
+      $pseudo,
+      $responsive
+    );
+    @include mu-create-utility(
+      u-tl#{$key},
+      (
+        border-top-left-radius: $value
+      ),
+      $pseudo,
+      $responsive
+    );
+    @include mu-create-utility(
+      u-tr#{$key},
+      (
+        border-top-right-radius: $value
+      ),
+      $pseudo,
+      $responsive
+    );
+    @include mu-create-utility(
+      u-br#{$key},
+      (
+        border-bottom-right-radius: $value
+      ),
+      $pseudo,
+      $responsive
+    );
+    @include mu-create-utility(
+      u-bl#{$key},
+      (
+        border-bottom-left-radius: $value
+      ),
+      $pseudo,
+      $responsive
+    );
+  }
+}
+
 @mixin u-border-radius(
   $responsive: false,
   $pseudo: false,

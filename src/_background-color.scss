@@ -1,6 +1,6 @@
-﻿@mixin u-background-color(
-  $responsive: false,
-  $pseudo: false,
+﻿@mixin mu-background-color(
+  $pseudo: (),
+  $responsive: (),
   $values: (
     black: #000000,
     fuchsia-blue: #845ec2,
@@ -12,14 +12,14 @@
     white: #ffffff
   )
 ) {
-  .u-bg {
-    @each $key, $value in $values {
-      &-#{$key} {
-        @include ruleset($responsive) {
-          background-color: $value;
-          @include pseudo-variants($pseudo);
-        }
-      }
-    }
+  @each $key, $value in $values {
+    @include mu-create-utility(
+      u-bg-#{$key},
+      (
+        background-color: $value
+      ),
+      $pseudo,
+      $responsive
+    );
   }
 }

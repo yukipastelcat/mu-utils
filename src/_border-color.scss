@@ -1,6 +1,6 @@
-﻿@mixin u-border-color(
-  $responsive: false,
-  $pseudo: false,
+﻿@mixin mu-border-color(
+  $pseudo: (),
+  $responsive: (),
   $values: (
     black: #000000,
     fuchsia-blue: #845ec2,
@@ -12,14 +12,14 @@
     white: #ffffff
   )
 ) {
-  .u-border {
-    @each $key, $value in $values {
-      &-#{$key} {
-        @include ruleset($responsive) {
-          border-color: $value;
-          @include pseudo-variants($pseudo);
-        }
-      }
-    }
+  @each $key, $value in $values {
+    @include mu-create-utility(
+      u-border-#{$key},
+      (
+        border-color: $value
+      ),
+      $pseudo,
+      $responsive
+    );
   }
 }

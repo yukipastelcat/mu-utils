@@ -1,6 +1,6 @@
-﻿@mixin u-background-repeat(
-  $responsive: false,
-  $pseudo: false,
+﻿@mixin mu-background-position(
+  $pseudo: (),
+  $responsive: (),
   $values: (
     repeat: repeat,
     no-repeat: no-repeat,
@@ -10,14 +10,14 @@
     repeat-space: space
   )
 ) {
-  .u-bg {
-    @each $key, $value in $values {
-      &-#{$key} {
-        @include ruleset($responsive) {
-          background-repeat: $value;
-          @include pseudo-variants($pseudo);
-        }
-      }
-    }
+  @each $key, $value in $values {
+    @include mu-create-utility(
+      u-background-repeat-#{$key},
+      (
+        background-repeat: $value
+      ),
+      $pseudo,
+      $responsive
+    );
   }
 }
