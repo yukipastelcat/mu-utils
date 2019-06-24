@@ -1,0 +1,10 @@
+﻿@import "true";
+@import "../global.scss";
+@import "src/background-size";
+
+@include describe("background-size utility") {
+  @include it("Should add 3 utilities to $mu-utilities map when called w/o params") {
+    @include mu-background-size();
+    @include assert-equal(length(map-keys($mu-utilities)), 3);
+  }
+}

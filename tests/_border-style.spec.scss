@@ -1,0 +1,10 @@
+﻿@import "true";
+@import "../global.scss";
+@import "src/border-style";
+
+@include describe("border-style utility") {
+  @include it("Should add 4 utilities to $mu-utilities map when called w/o params") {
+    @include mu-border-style();
+    @include assert-equal(length(map-keys($mu-utilities)), 4);
+  }
+}

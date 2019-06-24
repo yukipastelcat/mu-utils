@@ -1,0 +1,10 @@
+﻿@import "true";
+@import "../global.scss";
+@import "src/border-radius";
+
+@include describe("border-radius utility") {
+  @include it("Should add 63 utilities to $mu-utilities map when called w/o params") {
+    @include mu-border-radius();
+    @include assert-equal(length(map-keys($mu-utilities)), 63);
+  }
+}

@@ -1,6 +1,6 @@
 @import "true";
 @import "../global.scss";
-@import "background-color";
+@import "src/background-color";
 
 @include describe("background-color utility") {
   @include it("Should add 8 utilities to $mu-utilities map when called w/o params") {

@@ -1,0 +1,10 @@
+﻿@import "true";
+@import "../global.scss";
+@import "src/background-repeat";
+
+@include describe("background-repeat utility") {
+  @include it("Should add 6 utilities to $mu-utilities map when called w/o params") {
+    @include mu-background-repeat();
+    @include assert-equal(length(map-keys($mu-utilities)), 6);
+  }
+}

@@ -1,10 +1,10 @@
-@import "true";
+﻿@import "true";
 @import "../global.scss";
-@import "background-attachment";
+@import "src/aspect-ratio";
 
-@include describe("background-attachment utility") {
+@include describe("aspect-ratio utility") {
   @include it("Should add 3 utilities to $mu-utilities map when called w/o params") {
-    @include mu-background-attachment();
+    @include mu-aspect-ratio();
     @include assert-equal(length(map-keys($mu-utilities)), 3);
   }
 }

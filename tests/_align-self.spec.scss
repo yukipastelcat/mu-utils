@@ -1,6 +1,6 @@
 ﻿@import "true";
 @import "../global.scss";
-@import "align-self";
+@import "src/align-self";
 
 @include describe("align-self utility") {
   @include it("Should add 5 utilities to $mu-utilities map when called w/o params") {
