@@ -1,0 +1,10 @@
+@import "true";
+@import "../global.scss";
+@import "background-position";
+
+@include describe("background-position utility") {
+  @include it("Should add 9 utilities to $mu-utilities map when called w/o params") {
+    @include mu-background-position();
+    @include assert-equal(length(map-keys($mu-utilities)), 9);
+  }
+}

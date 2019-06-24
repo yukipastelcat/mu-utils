@@ -3,7 +3,7 @@
 @import "align-self";
 
 @include describe("align-self utility") {
-  @include it("Should add 5 utilities to $mu-utilities map") {
+  @include it("Should add 5 utilities to $mu-utilities map when called w/o params") {
     @include mu-align-self();
     @include assert-equal(length(map-keys($mu-utilities)), 5);
   }
