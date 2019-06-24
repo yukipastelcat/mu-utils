@@ -95,7 +95,6 @@ $mu-responsive-utilities: () !global;
   @each $variant in $variants {
     $variant-name: "";
     $variant-map: ();
-    @debug #{$name} #{$variant};
     @if $variant == hover {
       $variant-name: "hover\\:#{$name}:hover";
       $mu-hover-utilities: mu-add-ruleset($mu-hover-utilities, $variant-name, $ruleset) !global;
