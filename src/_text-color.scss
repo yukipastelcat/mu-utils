@@ -1,19 +1,12 @@
-﻿@mixin u-text-color(
-  $responsive: false,
-  $pseudo: false,
-  $values: (
-    0: 0,
-    auto: auto
-  )
-) {
-  .u-text {
-    @each $key, $value in $values {
-      &-#{$key} {
-        @include ruleset($responsive) {
-          color: $value;
-          @include pseudo-variants($pseudo);
-        }
-      }
-    }
+﻿@mixin mu-text-color($pseudo: (), $responsive: (), $values: $mu-default-theme) {
+  @each $key, $value in $values {
+    @include mu-create-utility(
+      u-text-#{$key},
+      (
+        color: $value
+      ),
+      $pseudo,
+      $responsive
+    );
   }
 }

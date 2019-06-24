@@ -1,98 +1,136 @@
-﻿@mixin u-pin(
-  $responsive: false,
-  $pseudo: false,
+﻿@mixin mu-overflow(
+  $pseudo: (),
+  $responsive: (),
   $values: (
     auto: auto,
     0: 0,
     100: 100%
   )
 ) {
-  .u {
-    @each $key, $value in $values {
-      &-inset-#{$key} {
-        @include ruleset($responsive) {
-          top: $value;
-          right: $value;
-          bottom: $value;
-          left: $value;
-        }
-      }
-      &-inset-y-#{$key} {
-        @include ruleset($responsive) {
-          top: $value;
-          bottom: $value;
-        }
-      }
-      &-inset-x-#{$key} {
-        @include ruleset($responsive) {
-          right: $value;
-          left: $value;
-        }
-      }
-      &-top-#{$key} {
-        @include ruleset($responsive) {
-          top: $value;
-        }
-      }
-      &-right-#{$key} {
-        @include ruleset($responsive) {
-          right: $value;
-        }
-      }
-      &-bottom-#{$key} {
-        @include ruleset($responsive) {
-          bottom: $value;
-        }
-      }
-      &-left-#{$key} {
-        @include ruleset($responsive) {
-          left: $value;
-        }
-      }
-    }
-  }
-  .u-n {
-    @each $key, $value in $values {
-      &-inset-#{$key} {
-        @include ruleset($responsive) {
-          top: -$value;
-          right: -$value;
-          bottom: -$value;
-          left: -$value;
-        }
-      }
-      &-inset-y-#{$key} {
-        @include ruleset($responsive) {
-          top: -$value;
-          bottom: -$value;
-        }
-      }
-      &-inset-x-#{$key} {
-        @include ruleset($responsive) {
-          right: -$value;
-          left: -$value;
-        }
-      }
-      &-top-#{$key} {
-        @include ruleset($responsive) {
-          top: -$value;
-        }
-      }
-      &-right-#{$key} {
-        @include ruleset($responsive) {
-          right: -$value;
-        }
-      }
-      &-bottom-#{$key} {
-        @include ruleset($responsive) {
-          bottom: -$value;
-        }
-      }
-      &-left-#{$key} {
-        @include ruleset($responsive) {
-          left: -$value;
-        }
-      }
+  @each $key, $value in $values {
+    @include mu-create-utility(
+      u-inset-#{$key},
+      (
+        top: $value,
+        right: $value,
+        bottom: $value,
+        left: $value
+      ),
+      $pseudo,
+      $responsive
+    );
+    @include mu-create-utility(
+      u-inset-y-#{$key},
+      (
+        top: $value,
+        bottom: $value
+      ),
+      $pseudo,
+      $responsive
+    );
+    @include mu-create-utility(
+      u-inset-x-#{$key},
+      (
+        right: $value,
+        left: $value
+      ),
+      $pseudo,
+      $responsive
+    );
+    @include mu-create-utility(
+      u-inset-top-#{$key},
+      (
+        top: $value
+      ),
+      $pseudo,
+      $responsive
+    );
+    @include mu-create-utility(
+      u-inset-right-#{$key},
+      (
+        right: $value
+      ),
+      $pseudo,
+      $responsive
+    );
+    @include mu-create-utility(
+      u-inset-bottom-#{$key},
+      (
+        bottom: $value
+      ),
+      $pseudo,
+      $responsive
+    );
+    @include mu-create-utility(
+      u-inset-left-#{$key},
+      (
+        left: $value
+      ),
+      $pseudo,
+      $responsive
+    );
+    @if $value != auto and $value != 0 and $value != 0px and $value != 0% {
+      @include mu-create-utility(
+        u-n-inset-#{$key},
+        (
+          top: -$value,
+          right: -$value,
+          bottom: -$value,
+          left: -$value
+        ),
+        $pseudo,
+        $responsive
+      );
+      @include mu-create-utility(
+        u-n-inset-y-#{$key},
+        (
+          top: -$value,
+          bottom: -$value
+        ),
+        $pseudo,
+        $responsive
+      );
+      @include mu-create-utility(
+        u-n-inset-x-#{$key},
+        (
+          right: -$value,
+          left: -$value
+        ),
+        $pseudo,
+        $responsive
+      );
+      @include mu-create-utility(
+        u-n-inset-top-#{$key},
+        (
+          top: -$value
+        ),
+        $pseudo,
+        $responsive
+      );
+      @include mu-create-utility(
+        u-n-inset-right-#{$key},
+        (
+          right: -$value
+        ),
+        $pseudo,
+        $responsive
+      );
+      @include mu-create-utility(
+        u-n-inset-bottom-#{$key},
+        (
+          bottom: -$value
+        ),
+        $pseudo,
+        $responsive
+      );
+      @include mu-create-utility(
+        u-n-inset-left-#{$key},
+        (
+          left: -$value
+        ),
+        $pseudo,
+        $responsive
+      );
     }
   }
 }

@@ -1,105 +1,122 @@
-﻿@mixin u-margin(
-  $responsive: false,
-  $pseudo: false,
-  $values: (
-    0: 0,
-    auto: auto
-  )
-) {
-  .u-m {
-    @each $key, $value in $values {
-      &-#{$key} {
-        @include ruleset($responsive) {
-          margin: $value;
-          @include pseudo-variants($pseudo);
-        }
-      }
-      &x-#{$key} {
-        @include ruleset($responsive) {
-          margin-left: $value;
-          margin-right: $value;
-          @include pseudo-variants($pseudo);
-        }
-      }
-      &y-#{$key} {
-        @include ruleset($responsive) {
-          margin-top: $value;
-          margin-bottom: $value;
-          @include pseudo-variants($pseudo);
-        }
-      }
-      &t-#{$key} {
-        @include ruleset($responsive) {
-          margin-top: $value;
-          @include pseudo-variants($pseudo);
-        }
-      }
-      &r-#{$key} {
-        @include ruleset($responsive) {
-          margin-right: $value;
-          @include pseudo-variants($pseudo);
-        }
-      }
-      &l-#{$key} {
-        @include ruleset($responsive) {
-          margin-left: $value;
-          @include pseudo-variants($pseudo);
-        }
-      }
-      &b-#{$key} {
-        @include ruleset($responsive) {
-          margin-bottom: $value;
-          @include pseudo-variants($pseudo);
-        }
-      }
-    }
-  }
-  .u-n-m {
-    @each $key, $value in $values {
-      &-#{$key} {
-        @include ruleset($responsive) {
-          margin: -$value;
-          @include pseudo-variants($pseudo);
-        }
-      }
-      &x-#{$key} {
-        @include ruleset($responsive) {
-          margin-left: -$value;
-          margin-right: -$value;
-          @include pseudo-variants($pseudo);
-        }
-      }
-      &y-#{$key} {
-        @include ruleset($responsive) {
-          margin-top: -$value;
-          margin-bottom: -$value;
-          @include pseudo-variants($pseudo);
-        }
-      }
-      &t-#{$key} {
-        @include ruleset($responsive) {
-          margin-top: -$value;
-          @include pseudo-variants($pseudo);
-        }
-      }
-      &r-#{$key} {
-        @include ruleset($responsive) {
-          margin-right: -$value;
-          @include pseudo-variants($pseudo);
-        }
-      }
-      &l-#{$key} {
-        @include ruleset($responsive) {
-          margin-left: -$value;
-          @include pseudo-variants($pseudo);
-        }
-      }
-      &b-#{$key} {
-        @include ruleset($responsive) {
-          margin-bottom: -$value;
-          @include pseudo-variants($pseudo);
-        }
-      }
+﻿@mixin mu-margin($pseudo: (), $responsive: (), $values: $mu-default-spacings) {
+  @each $key, $value in $values {
+    @include mu-create-utility(
+      u-m-#{$key},
+      (
+        margin: $value
+      ),
+      $pseudo,
+      $responsive
+    );
+    @include mu-create-utility(
+      u-mx-#{$key},
+      (
+        margin-left: $value,
+        margin-right: $value
+      ),
+      $pseudo,
+      $responsive
+    );
+    @include mu-create-utility(
+      u-my-#{$key},
+      (
+        margin-top: $value,
+        margin-bottom: $value
+      ),
+      $pseudo,
+      $responsive
+    );
+    @include mu-create-utility(
+      u-mt-#{$key},
+      (
+        margin-top: $value
+      ),
+      $pseudo,
+      $responsive
+    );
+    @include mu-create-utility(
+      u-mr-#{$key},
+      (
+        margin-right: $value
+      ),
+      $pseudo,
+      $responsive
+    );
+    @include mu-create-utility(
+      u-mb-#{$key},
+      (
+        margin-bottom: $value
+      ),
+      $pseudo,
+      $responsive
+    );
+    @include mu-create-utility(
+      u-ml-#{$key},
+      (
+        margin-left: $value
+      ),
+      $pseudo,
+      $responsive
+    );
+    @if $value != 0 and $value != auto and $value != 0px {
+      @include mu-create-utility(
+        u-n-m-#{$key},
+        (
+          margin: -$value
+        ),
+        $pseudo,
+        $responsive
+      );
+      @include mu-create-utility(
+        u-n-mx-#{$key},
+        (
+          margin-left: -$value,
+          margin-right: -$value
+        ),
+        $pseudo,
+        $responsive
+      );
+      @include mu-create-utility(
+        u-n-my-#{$key},
+        (
+          margin-top: -$value,
+          margin-bottom: -$value
+        ),
+        $pseudo,
+        $responsive
+      );
+      @include mu-create-utility(
+        u-n-mt-#{$key},
+        (
+          margin-top: -$value
+        ),
+        $pseudo,
+        $responsive
+      );
+      @include mu-create-utility(
+        u-n-mr-#{$key},
+        (
+          margin-right: -$value
+        ),
+        $pseudo,
+        $responsive
+      );
+      @include mu-create-utility(
+        u-n-mb-#{$key},
+        (
+          margin-bottom: -$value
+        ),
+        $pseudo,
+        $responsive
+      );
+      @include mu-create-utility(
+        u-n-ml-#{$key},
+        (
+          margin-left: -$value
+        ),
+        $pseudo,
+        $responsive
+      );
     }
   }
 }

@@ -1,20 +1,20 @@
-﻿@mixin u-list-style-type(
-  $responsive: false,
-  $pseudo: false,
+﻿@mixin mu-list-style-type(
+  $pseudo: (),
+  $responsive: (),
   $values: (
     none: none,
     disc: disc,
     decimal: decimal
   )
 ) {
-  .u-list {
-    @each $key, $value in $values {
-      &-#{$key} {
-        @include ruleset($responsive) {
-          list-style-type: $value;
-          @include pseudo-variants($pseudo);
-        }
-      }
-    }
+  @each $key, $value in $values {
+    @include mu-create-utility(
+      u-list-#{$key},
+      (
+        list-style-type: $value
+      ),
+      $pseudo,
+      $responsive
+    );
   }
 }

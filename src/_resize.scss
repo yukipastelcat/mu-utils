@@ -1,6 +1,6 @@
-﻿@mixin u-resize(
-  $responsive: false,
-  $pseudo: false,
+﻿@mixin mu-resize(
+  $pseudo: (),
+  $responsive: (),
   $values: (
     none: none,
     "": both,
@@ -8,17 +8,18 @@
     x: horizontal
   )
 ) {
-  .u-resize {
-    @each $prefix, $value in $values {
-      $key: "";
-      @if ($prefix != "") {
-        $key: #{"-"}#{$prefix};
-      }
-      &#{$key} {
-        @include ruleset($responsive) {
-          resize: $value;
-        }
-      }
+  @each $prefix, $value in $values {
+    $key: "";
+    @if ($prefix != "") {
+      $key: #{"-"}#{$prefix};
     }
+    @include mu-create-utility(
+      u-resize#{$key},
+      (
+        resize: $value
+      ),
+      $pseudo,
+      $responsive
+    );
   }
 }

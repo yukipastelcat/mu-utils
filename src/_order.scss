@@ -1,6 +1,6 @@
-﻿@mixin u-order(
-  $responsive: false,
-  $pseudo: false,
+﻿@mixin mu-order(
+  $pseudo: (),
+  $responsive: (),
   $values: (
     first: -1,
     last: 999,
@@ -19,14 +19,14 @@
     12: 12
   )
 ) {
-  .u-order {
-    @each $key, $value in $values {
-      &-#{$key} {
-        @include ruleset($responsive) {
-          order: $value;
-          @include pseudo-variants($pseudo);
-        }
-      }
-    }
+  @each $key, $value in $values {
+    @include mu-create-utility(
+      u-order-#{$key},
+      (
+        order: $value
+      ),
+      $pseudo,
+      $responsive
+    );
   }
 }

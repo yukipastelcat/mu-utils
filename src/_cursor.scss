@@ -1,6 +1,6 @@
-﻿@mixin u-cursor(
-  $responsive: false,
-  $pseudo: false,
+﻿@mixin mu-cursor(
+  $pseudo: (),
+  $responsive: (),
   $values: (
     auto: auto,
     default: default,
@@ -10,14 +10,14 @@
     not-allowed: not-allowed
   )
 ) {
-  .u-cursor {
-    @each $key, $value in $values {
-      &-#{$key} {
-        @include ruleset($responsive) {
-          cursor: $value;
-          @include pseudo-variants($pseudo);
-        }
-      }
-    }
+  @each $key, $value in $values {
+    @include mu-create-utility(
+      u-cursor-#{$key},
+      (
+        cursor: $value
+      ),
+      $pseudo,
+      $responsive
+    );
   }
 }

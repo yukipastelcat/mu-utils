@@ -1,18 +1,19 @@
-﻿@mixin u-scale(
-  $responsive: false,
-  $pseudo: false,
+﻿@mixin mu-scale(
+  $pseudo: (),
+  $responsive: (),
   $values: (
     0: 0,
     1: 1
   )
 ) {
-  .u-scale {
-    @each $key, $value in $values {
-      &-#{$key} {
-        @include ruleset($responsive) {
-          transform: scale($value);
-        }
-      }
-    }
+  @each $key, $value in $values {
+    @include mu-create-utility(
+      u-scale-#{$key},
+      (
+        transform: scale($value)
+      ),
+      $pseudo,
+      $responsive
+    );
   }
 }

@@ -1,48 +1,56 @@
-﻿@mixin u-translate(
-  $responsive: false,
-  $pseudo: false,
+﻿@mixin mu-translate(
+  $pseudo: (),
+  $responsive: (),
   $values: (
     0: 0%,
     100: 100%
   )
 ) {
-  .u-translate {
-    @each $key, $value in $values {
-      @if type-of($value) != "list" {
-        &-x-#{$key} {
-          @include ruleset($responsive) {
-            transform: translateX($value);
-            @include pseudo-variants($pseudo);
-          }
-        }
-        &-y-#{$key} {
-          @include ruleset($responsive) {
-            transform: translateY($value);
-            @include pseudo-variants($pseudo);
-          }
-        }
-        &-z-#{$key} {
-          @include ruleset($responsive) {
-            transform: translateZ($value);
-            @include pseudo-variants($pseudo);
-          }
-        }
-      } @else {
-        @if length($value) == 2 {
-          &-#{$key} {
-            @include ruleset($responsive) {
-              transform: translate(nth($value, 1), nth($value, 2));
-              @include pseudo-variants($pseudo);
-            }
-          }
-        } @else if length($value) == 3 {
-          &-#{$key} {
-            @include ruleset($responsive) {
-              transform: translate3d(nth($value, 1), nth($value, 2), nth($value, 3));
-              @include pseudo-variants($pseudo);
-            }
-          }
-        }
+  @each $key, $value in $values {
+    @if type-of($value) != "list" {
+      @include mu-create-utility(
+        u-translate-x-#{$key},
+        (
+          transform: translateX($value)
+        ),
+        $pseudo,
+        $responsive
+      );
+      @include mu-create-utility(
+        u-translate-y-#{$key},
+        (
+          transform: translateY($value)
+        ),
+        $pseudo,
+        $responsive
+      );
+      @include mu-create-utility(
+        u-translate-z-#{$key},
+        (
+          transform: translateZ($value)
+        ),
+        $pseudo,
+        $responsive
+      );
+    } @else {
+      @if length($value) == 2 {
+        @include mu-create-utility(
+          u-translate-#{$key},
+          (
+            transform: translate(nth($value, 1), nth($value, 2))
+          ),
+          $pseudo,
+          $responsive
+        );
+      } @else if length($value) == 3 {
+        @include mu-create-utility(
+          u-translate-#{$key},
+          (
+            transform: translate3d(nth($value, 1), nth($value, 2), nth($value, 3))
+          ),
+          $pseudo,
+          $responsive
+        );
       }
     }
   }

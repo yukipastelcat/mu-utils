@@ -1,6 +1,6 @@
-﻿@mixin u-text-align(
-  $responsive: false,
-  $pseudo: false,
+﻿@mixin mu-text-align(
+  $pseudo: (),
+  $responsive: (),
   $values: (
     left: left,
     center: center,
@@ -8,13 +8,14 @@
     justify: justify
   )
 ) {
-  .u-text {
-    @each $key, $value in $values {
-      &-#{$key} {
-        @include ruleset($responsive) {
-          text-align: $value;
-        }
-      }
-    }
+  @each $key, $value in $values {
+    @include mu-create-utility(
+      u-text-#{$key},
+      (
+        text-align: $value
+      ),
+      $pseudo,
+      $responsive
+    );
   }
 }

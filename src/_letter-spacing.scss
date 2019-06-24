@@ -1,6 +1,6 @@
-﻿@mixin u-letter-spacing(
-  $responsive: false,
-  $pseudo: false,
+﻿@mixin mu-letter-spacing(
+  $pseudo: (),
+  $responsive: (),
   $values: (
     tighter: -0.05em,
     tight: -0.025em,
@@ -10,14 +10,14 @@
     widest: 0.1em
   )
 ) {
-  .u-tracking {
-    @each $key, $value in $values {
-      &-#{$key} {
-        @include ruleset($responsive) {
-          letter-spacing: $value;
-          @include pseudo-variants($pseudo);
-        }
-      }
-    }
+  @each $key, $value in $values {
+    @include mu-create-utility(
+      u-tracking-#{$key},
+      (
+        letter-spacing: $value
+      ),
+      $pseudo,
+      $responsive
+    );
   }
 }

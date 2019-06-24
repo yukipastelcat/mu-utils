@@ -1,15 +1,20 @@
-﻿@mixin u-container($responsive: false, $pseudo: false, $values: map-get($mu-utils-settings, screens)) {
-  .u-container {
-    @include ruleset($responsive) {
-      width: 100%;
-    }
-    @each $key, $value in $values {
-      &-#{$key} {
-        @include ruleset($responsive) {
-          max-width: $value;
-          @include pseudo-variants($pseudo);
-        }
-      }
-    }
+﻿@mixin mu-container($pseudo: (), $responsive: (), $values: $mu-screens) {
+  @include mu-create-utility(
+    u-container,
+    (
+      width: 100%
+    ),
+    $pseudo,
+    $responsive
+  );
+  @each $key, $value in $values {
+    @include mu-create-utility(
+      u-container-#{$key},
+      (
+        width: $value
+      ),
+      $pseudo,
+      $responsive
+    );
   }
 }

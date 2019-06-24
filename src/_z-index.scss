@@ -1,6 +1,6 @@
-﻿@mixin u-z-index(
-  $responsive: false,
-  $pseudo: false,
+﻿@mixin mu-width(
+  $pseudo: (),
+  $responsive: (),
   $values: (
     0: 0,
     10: 10,
@@ -11,14 +11,14 @@
     auto: auto
   )
 ) {
-  .u-z {
-    @each $key, $value in $values {
-      &-#{$key} {
-        @include ruleset($responsive) {
-          z-index: $value;
-          @include pseudo-variants($pseudo);
-        }
-      }
-    }
+  @each $key, $value in $values {
+    @include mu-create-utility(
+      u-z-#{$key},
+      (
+        z-index: $value
+      ),
+      $pseudo,
+      $responsive
+    );
   }
 }

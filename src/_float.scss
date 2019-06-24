@@ -1,31 +1,32 @@
-﻿@mixin u-float(
-  $responsive: false,
-  $pseudo: false,
+﻿@mixin mu-float(
+  $pseudo: (),
+  $responsive: (),
   $values: (
     left: left,
     right: right,
     none: none
   )
 ) {
-  .u-float {
-    @each $key, $value in $values {
-      &-#{$key} {
-        @include ruleset($responsive) {
-          float: $value;
-          @include pseudo-variants($pseudo);
-        }
-      }
-    }
+  @each $key, $value in $values {
+    @include mu-create-utility(
+      u-flex-#{$key},
+      (
+        float: $value
+      ),
+      $pseudo,
+      $responsive
+    );
   }
-
-  .u-clearfix {
-    @include ruleset($responsive) {
-      &::after {
-        content: "";
-        display: table;
-        clear: both;
-      }
-      @include pseudo-variants($pseudo);
-    }
-  }
+  @include mu-create-utility(
+    u-clearfix,
+    (
+      after: (
+        content: "",
+        display: table,
+        clear: both
+      )
+    ),
+    $pseudo,
+    $responsive
+  );
 }
