@@ -1,16 +1,18 @@
-﻿@mixin u-transform(
-  $responsive: false,
-  $pseudo: false,
+﻿@mixin mu-transform(
+  $pseudo: (),
+  $responsive: (),
   $values: (
     none: none
   )
 ) {
-  .u-transform {
-    @each $key, $value in $values {
-      @include ruleset($responsive) {
-        transform: $value;
-        @include pseudo-variants($pseudo);
-      }
-    }
+  @each $key, $value in $values {
+    @include mu-create-utility(
+      u-transform-#{$key},
+      (
+        transform: $value
+      ),
+      $pseudo,
+      $responsive
+    );
   }
 }

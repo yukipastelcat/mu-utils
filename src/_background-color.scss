@@ -1,17 +1,4 @@
-﻿@mixin mu-background-color(
-  $pseudo: (),
-  $responsive: (),
-  $values: (
-    black: #000000,
-    fuchsia-blue: #845ec2,
-    hopbush: #d65db1,
-    tickle-me-pink: #ff6f91,
-    atomic-tangerine: #ff9671,
-    golden-tainoi: #ffc75f,
-    festival: #f9f871,
-    white: #ffffff
-  )
-) {
+﻿@mixin mu-background-color($pseudo: (), $responsive: (), $values: $mu-default-theme) {
   @each $key, $value in $values {
     @include mu-create-utility(
       u-bg-#{$key},

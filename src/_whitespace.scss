@@ -1,6 +1,6 @@
-﻿@mixin u-whitespace(
-  $responsive: false,
-  $pseudo: false,
+﻿@mixin mu-whitespace(
+  $pseudo: (),
+  $responsive: (),
   $values: (
     normal: normal,
     no-wrap: nowrap,
@@ -9,14 +9,14 @@
     pre-wrap: pre-wrap
   )
 ) {
-  .u-whitespace {
-    @each $key, $value in $values {
-      &-#{$key} {
-        @include ruleset($responsive) {
-          white-space: $value;
-          @include pseudo-variants($pseudo);
-        }
-      }
-    }
+  @each $key, $value in $values {
+    @include mu-create-utility(
+      u-whitespace-#{$key},
+      (
+        white-space: $value
+      ),
+      $pseudo,
+      $responsive
+    );
   }
 }

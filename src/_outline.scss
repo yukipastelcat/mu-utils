@@ -1,18 +1,18 @@
-﻿@mixin u-outline(
-  $responsive: false,
-  $pseudo: false,
+﻿@mixin mu-outline(
+  $pseudo: (),
+  $responsive: (),
   $values: (
     none: none
   )
 ) {
-  .u-outline {
-    @each $key, $value in $values {
-      &-#{$key} {
-        @include ruleset($responsive) {
-          outline: $value;
-          @include pseudo-variants($pseudo);
-        }
-      }
-    }
+  @each $key, $value in $values {
+    @include mu-create-utility(
+      u-outline-#{$key},
+      (
+        outline: $value
+      ),
+      $pseudo,
+      $responsive
+    );
   }
 }

@@ -1,18 +1,19 @@
-﻿@mixin u-pointer-events(
-  $responsive: false,
-  $pseudo: false,
+﻿@mixin mu-pointer-events(
+  $pseudo: (),
+  $responsive: (),
   $values: (
     none: none,
     auto: auto
   )
 ) {
-  .u-pointer-events {
-    @each $key, $value in $values {
-      &-#{$key} {
-        @include ruleset($responsive) {
-          pointer-events: $value;
-        }
-      }
-    }
+  @each $key, $value in $values {
+    @include mu-create-utility(
+      u-pointer-events-#{$key},
+      (
+        pointer-events: $value
+      ),
+      $pseudo,
+      $responsive
+    );
   }
 }

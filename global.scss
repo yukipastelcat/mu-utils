@@ -3,6 +3,55 @@
   md: 720px
 ) !global;
 
+$mu-default-spacings: (
+  0: 0px,
+  px: 1px,
+  1: 4px,
+  2: 8px,
+  3: 12px,
+  4: 16px,
+  5: 20px,
+  6: 24px,
+  8: 32px,
+  10: 40px,
+  12: 48px,
+  16: 64px,
+  20: 80px,
+  24: 96px,
+  32: 128px,
+  40: 160px,
+  48: 192px,
+  56: 224px,
+  64: 256px
+) !global;
+
+$mu-default-theme: (
+  black: #000000,
+  fuchsia-blue: #845ec2,
+  hopbush: #d65db1,
+  tickle-me-pink: #ff6f91,
+  atomic-tangerine: #ff9671,
+  golden-tainoi: #ffc75f,
+  festival: #f9f871,
+  white: #ffffff
+) !global;
+
+$mu-default-shifts: (
+  xxs: 75ms,
+  xs: 100ms,
+  sm: 150ms,
+  md: 200ms,
+  lg: 250ms,
+  xl: 300ms,
+  xxl: 500ms
+) !global;
+
+$mu-default-easings: (
+  standart: cubic-bezier(0.4, 0, 0.2, 1),
+  decelerate: cubic-bezier(0, 0, 0.2, 1),
+  accelerate: cubic-bezier(0.4, 0, 1, 1)
+) !global;
+
 $mu-utilities: () !global;
 $mu-hover-utilities: () !global;
 $mu-focus-utilities: () !global;
@@ -14,7 +63,21 @@ $mu-responsive-utilities: () !global;
 
 @mixin mu-parse-ruleset($ruleset) {
   @each $key, $value in $ruleset {
-    #{$key}: #{$value};
+    @if $key == before {
+      &::before {
+        @each $key-before, $value-before in map-get($ruleset, before) {
+          #{$key-before}: #{$value-before};
+        }
+      }
+    } @else if $key == after {
+      &::after {
+        @each $key-after, $value-after in map-get($ruleset, after) {
+          #{$key-after}: #{$value-after};
+        }
+      }
+    } @else {
+      #{$key}: #{$value};
+    }
   }
 }
 
@@ -58,7 +121,7 @@ $mu-responsive-utilities: () !global;
       $mu-focus-within-utilities: mu-add-ruleset($mu-focus-within-utilities, $variant-name, $ruleset) !global;
     }
     @if length($screens) > 0 {
-      @include mu-create-responsive-variants($variant-name, $ruleset, $screens);
+      @include mu-add-responsive-variants($variant-name, $ruleset, $screens);
     }
   }
 }

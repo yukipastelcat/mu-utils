@@ -1,20 +1,20 @@
-﻿@mixin u-flex-wrap(
-  $responsive: false,
-  $pseudo: false,
+﻿@mixin mu-flex-shrink(
+  $pseudo: (),
+  $responsive: (),
   $values: (
     no-wrap: nowrap,
     wrap: wrap,
     wrap-reverse: wrap-reverse
   )
 ) {
-  .u-flex {
-    @each $key, $value in $values {
-      &-#{$key} {
-        @include ruleset($responsive) {
-          flex-wrap: $value;
-          @include pseudo-variants($pseudo);
-        }
-      }
-    }
+  @each $key, $value in $values {
+    @include mu-create-utility(
+      u-flex-#{$key},
+      (
+        flex-wrap: $value
+      ),
+      $pseudo,
+      $responsive
+    );
   }
 }

@@ -1,46 +1,42 @@
-﻿@mixin u-overflow(
-  $responsive: false,
-  $pseudo: false,
+﻿@mixin mu-overflow(
+  $pseudo: (),
+  $responsive: (),
   $values: (
     auto: auto,
     hidden: hidden,
     visible: visible,
     scroll: scroll
-  )
+  ),
+  $include-scrolling: false
 ) {
-  .u-overflow {
-    @each $key, $value in $values {
-      &-#{$key} {
-        @include ruleset($responsive) {
-          overflow: $value;
-          @include pseudo-variants($pseudo);
-        }
-      }
-      &-x-#{$key} {
-        @include ruleset($responsive) {
-          overflow-x: $value;
-          @include pseudo-variants($pseudo);
-        }
-      }
-      &-y-#{$key} {
-        @include ruleset($responsive) {
-          overflow-y: $value;
-          @include pseudo-variants($pseudo);
-        }
-      }
-    }
+  @each $key, $value in $values {
+    @include mu-create-utility(
+      u-overflow-#{$key},
+      (
+        overflow: $value
+      ),
+      $pseudo,
+      $responsive
+    );
+    @include mu-create-utility(
+      u-overflow-x-#{$key},
+      (
+        overflow-x: $value
+      ),
+      $pseudo,
+      $responsive
+    );
+    @include mu-create-utility(
+      u-overflow-y-#{$key},
+      (
+        overflow-y: $value
+      ),
+      $pseudo,
+      $responsive
+    );
   }
-
-  .u-scrolling {
-    &-touch {
-      @include ruleset($responsive) {
-        -webkit-overflow-scrolling: touch;
-      }
-    }
-    &-auto {
-      @include ruleset($responsive) {
-        -webkit-overflow-scrolling: auto;
-      }
-    }
+  @if $include-scrolling == true {
+    @include mu-create-utility(u-scrolling-touch, (-webkit-overflow-scrolling: touch), $pseudo, $responsive);
+    @include mu-create-utility(u-scrolling-auto, (-webkit-overflow-scrolling: auto), $pseudo, $responsive);
   }
 }

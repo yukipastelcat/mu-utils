@@ -1,19 +1,19 @@
-﻿@mixin u-list-style-position(
-  $responsive: false,
-  $pseudo: false,
+﻿@mixin mu-list-style-position(
+  $pseudo: (),
+  $responsive: (),
   $values: (
     inside: inside,
     outside: outside
   )
 ) {
-  .u-list {
-    @each $key, $value in $values {
-      &-#{$key} {
-        @include ruleset($responsive) {
-          list-style-position: $value;
-          @include pseudo-variants($pseudo);
-        }
-      }
-    }
+  @each $key, $value in $values {
+    @include mu-create-utility(
+      u-list-#{$key},
+      (
+        list-style-position: $value
+      ),
+      $pseudo,
+      $responsive
+    );
   }
 }

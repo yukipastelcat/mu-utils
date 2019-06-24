@@ -1,19 +1,19 @@
-﻿@mixin u-font-style(
-  $responsive: false,
-  $pseudo: false,
+﻿@mixin mu-font-style(
+  $pseudo: (),
+  $responsive: (),
   $values: (
     italic: italic,
     non-italic: normal
   )
 ) {
-  .u {
-    @each $key, $value in $values {
-      &-#{$key} {
-        @include ruleset($responsive) {
-          font-style: $value;
-          @include pseudo-variants($pseudo);
-        }
-      }
-    }
+  @each $key, $value in $values {
+    @include mu-create-utility(
+      u-#{$key},
+      (
+        font-style: $value
+      ),
+      $pseudo,
+      $responsive
+    );
   }
 }

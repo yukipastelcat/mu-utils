@@ -1,6 +1,6 @@
-﻿@mixin u-box-shadow(
-  $responsive: false,
-  $pseudo: false,
+﻿@mixin mu-box-shadow(
+  $pseudo: (),
+  $responsive: (),
   $values: (
     "": (
       0 1px 3px 0 rgba(0, 0, 0, 0.1),
@@ -30,18 +30,18 @@
     none: none
   )
 ) {
-  .u-shadow {
-    @each $prefix, $value in $values {
-      $key: "";
-      @if ($prefix != "") {
-        $key: #{"-"}#{$prefix};
-      }
-      &#{$key} {
-        @include ruleset($responsive) {
-          box-shadow: $value;
-          @include pseudo-variants($pseudo);
-        }
-      }
+  @each $prefix, $value in $values {
+    $key: "";
+    @if ($prefix != "") {
+      $key: #{"-"}#{$prefix};
     }
+    @include mu-create-utility(
+      u-shadow#{$key},
+      (
+        box-shadow: $value
+      ),
+      $pseudo,
+      $responsive
+    );
   }
 }
