@@ -1,6 +1,6 @@
-﻿@mixin u-background-position(
-  $responsive: false,
-  $pseudo: false,
+﻿@mixin mu-background-position(
+  $pseudo: (),
+  $responsive: (),
   $values: (
     bottom: bottom,
     center: center,
@@ -13,12 +13,14 @@
     top: top
   )
 ) {
-  .u-bg {
-    @each $key, $value in $values {
-      @include ruleset($responsive) {
-        background-position: $value;
-        @include pseudo-variants($pseudo);
-      }
-    }
+  @each $key, $value in $values {
+    @include mu-create-utility(
+      u-background-position-#{$key},
+      (
+        background-position: $value
+      ),
+      $pseudo,
+      $responsive
+    );
   }
 }

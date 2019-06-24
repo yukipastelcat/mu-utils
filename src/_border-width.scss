@@ -1,4 +1,98 @@
-﻿@mixin u-border-width(
+﻿@mixin mu-border-width(
+  $pseudo: (),
+  $responsive: (),
+  $values: (
+    0: 0,
+    2: 2px,
+    4: 4px,
+    8: 8px
+  )
+) {
+  @include mu-create-utility(
+    u-border,
+    (
+      border-width: 1px
+    ),
+    $pseudo,
+    $responsive
+  );
+  @include mu-create-utility(
+    u-border-t,
+    (
+      border-top-width: 1px
+    ),
+    $pseudo,
+    $responsive
+  );
+  @include mu-create-utility(
+    u-border-r,
+    (
+      border-right-width: 1px
+    ),
+    $pseudo,
+    $responsive
+  );
+  @include mu-create-utility(
+    u-border-b,
+    (
+      border-bottom-width: 1px
+    ),
+    $pseudo,
+    $responsive
+  );
+  @include mu-create-utility(
+    u-border-l,
+    (
+      border-left-width: 1px
+    ),
+    $pseudo,
+    $responsive
+  );
+  @each $key, $value in $values {
+    @include mu-create-utility(
+      u-border-#{$key},
+      (
+        border-width: $value
+      ),
+      $pseudo,
+      $responsive
+    );
+    @include mu-create-utility(
+      u-border-t-#{$key},
+      (
+        border-top-width: $value
+      ),
+      $pseudo,
+      $responsive
+    );
+    @include mu-create-utility(
+      u-border-r-#{$key},
+      (
+        border-right-width: $value
+      ),
+      $pseudo,
+      $responsive
+    );
+    @include mu-create-utility(
+      u-border-b-#{$key},
+      (
+        border-bottom-width: $value
+      ),
+      $pseudo,
+      $responsive
+    );
+    @include mu-create-utility(
+      u-border-l-#{$key},
+      (
+        border-left-width: $value
+      ),
+      $pseudo,
+      $responsive
+    );
+  }
+}
+
+@mixin u-border-width(
   $responsive: false,
   $pseudo: false,
   $values: (

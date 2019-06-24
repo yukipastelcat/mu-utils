@@ -1,6 +1,6 @@
-﻿@mixin u-text-transform(
-  $responsive: false,
-  $pseudo: false,
+﻿@mixin mu-text-transform(
+  $pseudo: (),
+  $responsive: (),
   $values: (
     uppercase: uppercase,
     lowercase: lowercase,
@@ -8,14 +8,14 @@
     normal-case: none
   )
 ) {
-  .u {
-    @each $key, $value in $values {
-      &-#{$key} {
-        @include ruleset($responsive) {
-          text-transform: $value;
-          @include pseudo-variants($pseudo);
-        }
-      }
-    }
+  @each $key, $value in $values {
+    @include mu-create-utility(
+      u-#{$key},
+      (
+        text-transform: $value
+      ),
+      $pseudo,
+      $responsive
+    );
   }
 }

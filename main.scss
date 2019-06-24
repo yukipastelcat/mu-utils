@@ -1,61 +1,4 @@
-$mu-utils-settings: (
-  screens: (
-    sm: 640px,
-    md: 768px,
-    lg: 1024px,
-    xl: 1280px
-  )
-);
-
-$mu-responsive-placeholders: ();
-
-@function slice-selector($selector) {
-  $length: str-length($selector);
-  @return str-slice($selector, 2, $length);
-}
-
-@mixin pseudo-variants($should-generate) {
-  @if $should-generate == true {
-    $selector: #{&};
-    $sliced-selector: slice-selector(#{&});
-    @at-root .hover#{"\\:"}#{$sliced-selector}:hover {
-      @extend #{$selector};
-    }
-    @at-root .focus#{"\\:"}#{$sliced-selector}:focus {
-      @extend #{$selector};
-    }
-    @at-root .active#{"\\:"}#{$sliced-selector}:active {
-      @extend #{$selector};
-    }
-    @at-root .group:hover .group-hover#{"\\:"}#{$sliced-selector} {
-      @extend #{$selector};
-    }
-    @at-root .group:active .group-active#{"\\:"}#{$sliced-selector} {
-      @extend #{$selector};
-    }
-    @at-root .focus-within#{"\\:"}#{$sliced-selector}:focus-within {
-      @extend #{$selector};
-    }
-  }
-}
-
-@mixin ruleset($is-responsive: false) {
-  & {
-    @content;
-  }
-  @if $is-responsive == true {
-    $selector: slice-selector(#{&});
-    @each $screen, $size in map-get($mu-utils-settings, screens) {
-      $placeholder: #{$screen}\: #{$selector};
-      $mu-responsive-placeholders: append($mu-responsive-placeholders, $placeholder);
-      @at-root %#{$screen}\:#{$selector} {
-        @media (min-width: $size) {
-          @content;
-        }
-      }
-    }
-  }
-}
+@import "global.scss";
 
 // #region LAYOUT
 @import "src/container", "src/display", "src/float", "src/overflow", "src/position", "src/pin", "src/box-sizing",
@@ -105,9 +48,3 @@ $mu-responsive-placeholders: ();
 // #region TRANSITIONS
 @import "src/transitions";
 // #endregion TRANSITIONS
-
-@each $placeholder in $placeholders {
-  .#{$placeholder} {
-    @extend %#{$placeholder};
-  }
-}

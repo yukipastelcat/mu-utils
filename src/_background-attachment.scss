@@ -1,20 +1,20 @@
-﻿@mixin u-background-attachment(
-  $responsive: false,
-  $pseudo: false,
+﻿@mixin mu-background-attachment(
+  $pseudo: (),
+  $responsive: (),
   $values: (
     fixed: fixed,
     local: local,
     scroll: scroll
   )
 ) {
-  .u-bg {
-    @each $key, $value in $values {
-      &-#{$key} {
-        @include ruleset($responsive) {
-          background-attachment: $value;
-          @include pseudo-variants($pseudo);
-        }
-      }
-    }
+  @each $key, $value in $values {
+    @include mu-create-utility(
+      u-background-attachment-#{$key},
+      (
+        background-attachment: $value
+      ),
+      $pseudo,
+      $responsive
+    );
   }
 }

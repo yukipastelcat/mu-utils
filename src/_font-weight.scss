@@ -1,6 +1,6 @@
-﻿@mixin u-font-weight(
-  $responsive: false,
-  $pseudo: false,
+﻿@mixin mu-font-weight(
+  $pseudo: (),
+  $responsive: (),
   $values: (
     hairline: 100,
     thin: 200,
@@ -13,14 +13,14 @@
     black: 900
   )
 ) {
-  .u-font {
-    @each $key, $value in $values {
-      &-#{$key} {
-        @include ruleset($responsive) {
-          font-weight: $value;
-          @include pseudo-variants($pseudo);
-        }
-      }
-    }
+  @each $key, $value in $values {
+    @include mu-create-utility(
+      u-font-#{$key},
+      (
+        font-weight: $value
+      ),
+      $pseudo,
+      $responsive
+    );
   }
 }

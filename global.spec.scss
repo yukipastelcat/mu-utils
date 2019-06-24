@@ -1,0 +1,20 @@
+﻿@import "true";
+@import "global";
+
+@include describe("mu-parse-ruleset mixin") {
+  @include it("Should generate CSS rules from $ruleset map") {
+    @include assert {
+      @include output {
+        @include mu-parse-ruleset(
+          (
+            color: red
+          )
+        );
+      }
+
+      @include expect {
+        color: red;
+      }
+    }
+  }
+}

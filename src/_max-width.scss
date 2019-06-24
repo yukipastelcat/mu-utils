@@ -1,19 +1,12 @@
-﻿@mixin u-max-width(
-  $responsive: false,
-  $pseudo: false,
-  $values: (
-    0: 0,
-    auto: auto
-  )
-) {
-  .u-max-w {
-    @each $key, $value in $values {
-      &-#{$key} {
-        @include ruleset($responsive) {
-          max-width: $value;
-          @include pseudo-variants($pseudo);
-        }
-      }
-    }
+﻿@mixin mu-max-width($pseudo: (), $responsive: (), $values: $mu-default-spacings) {
+  @each $key, $value in $values {
+    @include mu-create-utility(
+      u-max-w-#{$key},
+      (
+        max-width: $value
+      ),
+      $pseudo,
+      $responsive
+    );
   }
 }

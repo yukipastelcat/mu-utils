@@ -1,6 +1,6 @@
-﻿@mixin u-transform-origin(
-  $responsive: false,
-  $pseudo: false,
+﻿@mixin mu-transform-origin(
+  $pseudo: (),
+  $responsive: (),
   $values: (
     t: top,
     tr: top right,
@@ -12,14 +12,14 @@
     tl: top left
   )
 ) {
-  .u-transform {
-    @each $key, $value in $values {
-      &-#{$key} {
-        @include ruleset($responsive) {
-          transform-origin: $value;
-          @include pseudo-variants($pseudo);
-        }
-      }
-    }
+  @each $key, $value in $values {
+    @include mu-create-utility(
+      u-transform-origin-#{$key},
+      (
+        transform-origin: $value
+      ),
+      $pseudo,
+      $responsive
+    );
   }
 }

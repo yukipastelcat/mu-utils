@@ -1,19 +1,12 @@
-﻿@mixin u-height(
-  $responsive: false,
-  $pseudo: false,
-  $values: (
-    0: 0,
-    auto: auto
-  )
-) {
-  .u-h {
-    @each $key, $value in $values {
-      &-#{$key} {
-        @include ruleset($responsive) {
-          height: $value;
-          @include pseudo-variants($pseudo);
-        }
-      }
-    }
+﻿@mixin mu-height($pseudo: (), $responsive: (), $values: $mu-default-spacings) {
+  @each $key, $value in $values {
+    @include mu-create-utility(
+      u-h-#{$key},
+      (
+        height: $value
+      ),
+      $pseudo,
+      $responsive
+    );
   }
 }

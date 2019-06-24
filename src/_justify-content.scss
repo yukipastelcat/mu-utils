@@ -1,6 +1,6 @@
-﻿@mixin u-justify-content(
-  $responsive: false,
-  $pseudo: false,
+﻿@mixin mu-justify-content(
+  $pseudo: (),
+  $responsive: (),
   $values: (
     start: flex-start,
     center: center,
@@ -9,14 +9,14 @@
     around: space-around
   )
 ) {
-  .u-justify {
-    @each $key, $value in $values {
-      &-#{$key} {
-        @include ruleset($responsive) {
-          justify-content: $value;
-          @include pseudo-variants($pseudo);
-        }
-      }
-    }
+  @each $key, $value in $values {
+    @include mu-create-utility(
+      u-justify-#{$key},
+      (
+        justify-content: $value
+      ),
+      $pseudo,
+      $responsive
+    );
   }
 }

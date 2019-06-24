@@ -1,25 +1,12 @@
-﻿@mixin u-border-color(
-  $responsive: false,
-  $pseudo: false,
-  $values: (
-    black: #000000,
-    fuchsia-blue: #845ec2,
-    hopbush: #d65db1,
-    tickle-me-pink: #ff6f91,
-    atomic-tangerine: #ff9671,
-    golden-tainoi: #ffc75f,
-    festival: #f9f871,
-    white: #ffffff
-  )
-) {
-  .u-border {
-    @each $key, $value in $values {
-      &-#{$key} {
-        @include ruleset($responsive) {
-          border-color: $value;
-          @include pseudo-variants($pseudo);
-        }
-      }
-    }
+﻿@mixin mu-border-color($pseudo: (), $responsive: (), $values: $mu-default-theme) {
+  @each $key, $value in $values {
+    @include mu-create-utility(
+      u-border-#{$key},
+      (
+        border-color: $value
+      ),
+      $pseudo,
+      $responsive
+    );
   }
 }

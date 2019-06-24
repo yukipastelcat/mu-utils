@@ -1,19 +1,19 @@
-﻿@mixin u-flex-grow(
-  $responsive: false,
-  $pseudo: false,
+﻿@mixin mu-flex-grow(
+  $pseudo: (),
+  $responsive: (),
   $values: (
     grow: 1,
     grow-0: 0
   )
 ) {
-  .u-flex {
-    @each $key, $value in $values {
-      &-#{$key} {
-        @include ruleset($responsive) {
-          flex-grow: $value;
-          @include pseudo-variants($pseudo);
-        }
-      }
-    }
+  @each $key, $value in $values {
+    @include mu-create-utility(
+      u-flex-#{$key},
+      (
+        flex-grow: $value
+      ),
+      $pseudo,
+      $responsive
+    );
   }
 }

@@ -1,19 +1,12 @@
-﻿@mixin u-min-height(
-  $responsive: false,
-  $pseudo: false,
-  $values: (
-    0: 0,
-    auto: auto
-  )
-) {
-  .u-min-h {
-    @each $key, $value in $values {
-      &-#{$key} {
-        @include ruleset($responsive) {
-          min-height: $value;
-          @include pseudo-variants($pseudo);
-        }
-      }
-    }
+﻿@mixin mu-min-height($pseudo: (), $responsive: (), $values: $mu-default-spacings) {
+  @each $key, $value in $values {
+    @include mu-create-utility(
+      u-min-h-#{$key},
+      (
+        min-height: $value
+      ),
+      $pseudo,
+      $responsive
+    );
   }
 }

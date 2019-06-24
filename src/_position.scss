@@ -1,6 +1,6 @@
-﻿@mixin u-position(
-  $responsive: false,
-  $pseudo: false,
+﻿@mixin mu-position(
+  $pseudo: (),
+  $responsive: (),
   $values: (
     static: static,
     fixed: fixed,
@@ -9,13 +9,14 @@
     sticky: sticky
   )
 ) {
-  .u {
-    @each $key, $value in $values {
-      &-#{$key} {
-        @include ruleset($responsive) {
-          position: $value;
-        }
-      }
-    }
+  @each $key, $value in $values {
+    @include mu-create-utility(
+      u-#{$key},
+      (
+        position: $value
+      ),
+      $pseudo,
+      $responsive
+    );
   }
 }

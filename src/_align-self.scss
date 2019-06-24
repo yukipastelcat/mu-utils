@@ -1,6 +1,6 @@
-﻿@mixin u-align-self(
-  $responsive: false,
-  $pseudo: false,
+﻿@mixin mu-align-self(
+  $pseudo: (),
+  $responsive: (),
   $values: (
     auto: auto,
     start: flex-start,
@@ -9,14 +9,14 @@
     stretch: stretch
   )
 ) {
-  .u-self {
-    @each $key, $value in $values {
-      &-#{$key} {
-        @include ruleset($responsive) {
-          align-content: $value;
-          @include pseudo-variants($pseudo);
-        }
-      }
-    }
+  @each $key, $value in $values {
+    @include mu-create-utility(
+      u-align-self-#{$key},
+      (
+        align-self: $value
+      ),
+      $pseudo,
+      $responsive
+    );
   }
 }

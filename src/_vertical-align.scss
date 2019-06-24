@@ -1,6 +1,6 @@
-﻿@mixin u-vertical-align(
-  $responsive: false,
-  $pseudo: false,
+﻿@mixin mu-vertical-align(
+  $pseudo: (),
+  $responsive: (),
   $values: (
     baseline: baseline,
     top: top,
@@ -10,14 +10,14 @@
     text-bottom: text-bottom
   )
 ) {
-  .u-align {
-    @each $key, $value in $values {
-      &-#{$key} {
-        @include ruleset($responsive) {
-          vertical-align: $value;
-          @include pseudo-variants($pseudo);
-        }
-      }
-    }
+  @each $key, $value in $values {
+    @include mu-create-utility(
+      u-align-#{$key},
+      (
+        vertical-align: $value
+      ),
+      $pseudo,
+      $responsive
+    );
   }
 }

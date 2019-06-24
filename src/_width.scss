@@ -1,19 +1,12 @@
-﻿@mixin u-width(
-  $responsive: false,
-  $pseudo: false,
-  $values: (
-    0: 0,
-    auto: auto
-  )
-) {
-  .u-w {
-    @each $key, $value in $values {
-      &-#{$key} {
-        @include ruleset($responsive) {
-          width: $value;
-          @include pseudo-variants($pseudo);
-        }
-      }
-    }
+﻿@mixin mu-width($pseudo: (), $responsive: (), $values: $mu-default-spacings) {
+  @each $key, $value in $values {
+    @include mu-create-utility(
+      u-w-#{$key},
+      (
+        width: $value
+      ),
+      $pseudo,
+      $responsive
+    );
   }
 }

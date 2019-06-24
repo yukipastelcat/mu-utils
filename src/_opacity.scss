@@ -1,6 +1,6 @@
-﻿@mixin u-opacity(
-  $responsive: false,
-  $pseudo: false,
+﻿@mixin mu-opacity(
+  $pseudo: (),
+  $responsive: (),
   $values: (
     0: 0,
     25: 0.25,
@@ -9,14 +9,14 @@
     100: 1
   )
 ) {
-  .u-opacity {
-    @each $key, $value in $values {
-      &-#{$key} {
-        @include ruleset($responsive) {
-          opacity: $value;
-          @include pseudo-variants($pseudo);
-        }
-      }
-    }
+  @each $key, $value in $values {
+    @include mu-create-utility(
+      u-opacity-#{$key},
+      (
+        opacity: $value
+      ),
+      $pseudo,
+      $responsive
+    );
   }
 }

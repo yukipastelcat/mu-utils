@@ -1,6 +1,6 @@
-﻿@mixin u-object-fit(
-  $responsive: false,
-  $pseudo: false,
+﻿@mixin mu-object-fit(
+  $pseudo: (),
+  $responsive: (),
   $values: (
     contain: contain,
     cover: cover,
@@ -9,14 +9,14 @@
     scale-down: scale-down
   )
 ) {
-  .u-object {
-    @each $key, $value in $values {
-      &-#{$key} {
-        @include ruleset($responsive) {
-          object-fit: $value;
-          @include pseudo-variants($pseudo);
-        }
-      }
-    }
+  @each $key, $value in $values {
+    @include mu-create-utility(
+      u-object-#{$key},
+      (
+        object-fit: $value
+      ),
+      $pseudo,
+      $responsive
+    );
   }
 }

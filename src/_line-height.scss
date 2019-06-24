@@ -1,6 +1,6 @@
-﻿@mixin u-line-height(
-  $responsive: false,
-  $pseudo: false,
+﻿@mixin mu-line-height(
+  $pseudo: (),
+  $responsive: (),
   $values: (
     none: 1,
     tight: 1.25,
@@ -10,14 +10,14 @@
     loose: 2
   )
 ) {
-  .u-leading {
-    @each $key, $value in $values {
-      &-#{$key} {
-        @include ruleset($responsive) {
-          line-height: $value;
-          @include pseudo-variants($pseudo);
-        }
-      }
-    }
+  @each $key, $value in $values {
+    @include mu-create-utility(
+      u-leading-#{$key},
+      (
+        line-height: $value
+      ),
+      $pseudo,
+      $responsive
+    );
   }
 }
