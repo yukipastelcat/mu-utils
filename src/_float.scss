@@ -9,7 +9,7 @@
 ) {
   @each $key, $value in $values {
     @include mu-create-utility(
-      u-flex-#{$key},
+      u-float-#{$key},
       (
         float: $value
       ),
