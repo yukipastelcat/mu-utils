@@ -15,7 +15,7 @@
 ) {
   @each $key, $value in $values {
     @include mu-create-utility(
-      u-background-position-#{$key},
+      u-bg-#{$key},
       (
         background-position: $value
       ),

@@ -9,7 +9,7 @@
 ) {
   @each $key, $value in $values {
     @include mu-create-utility(
-      u-background-size-#{$key},
+      u-bg-#{$key},
       (
         background-size: $value
       ),

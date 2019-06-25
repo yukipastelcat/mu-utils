@@ -11,7 +11,7 @@
 ) {
   @each $key, $value in $values {
     @include mu-create-utility(
-      u-align-self-#{$key},
+      u-self-#{$key},
       (
         align-self: $value
       ),
