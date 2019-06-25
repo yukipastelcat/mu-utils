@@ -130,7 +130,6 @@ $mu-responsive-utilities: () !global;
     $size: map-get($mu-screens, $screen);
     @if $size != null {
       @if map-has-key($mu-responsive-utilities, $screen) {
-        @debug Using existing key for #{$screen}\: #{$name};
       } @else {
         $mu-responsive-utilities: map-merge(
           $mu-responsive-utilities,

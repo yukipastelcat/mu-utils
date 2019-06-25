@@ -12,7 +12,7 @@
 ) {
   @each $key, $value in $values {
     @include mu-create-utility(
-      u-background-repeat-#{$key},
+      u-bg-#{$key},
       (
         background-repeat: $value
       ),

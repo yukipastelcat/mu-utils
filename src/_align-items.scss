@@ -11,7 +11,7 @@
 ) {
   @each $key, $value in $values {
     @include mu-create-utility(
-      u-align-items-#{$key},
+      u-items-#{$key},
       (
         align-items: $value
       ),
