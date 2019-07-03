@@ -11,7 +11,7 @@
   $transition: "";
   $transitions-map: ();
   @each $key, $value in $values {
-    $transitions-map: map-merge($transitions-map, (--#{$key}: display 0s linear));
+    $transitions-map: map-merge($transitions-map, (--#{$key}: auto 0s linear));
     $i: index($key, $values);
     $transition: #{$transition + var(--#{$key})};
     @if ($i != 0) {
@@ -20,8 +20,11 @@
   }
   @include mu-create-utility(
     u-shiftable,
-    (
-      transition: $transition
+    map-merge(
+      $transitions-map,
+      (
+        transition: $transition
+      )
     ),
     $pseudo,
     $responsive
