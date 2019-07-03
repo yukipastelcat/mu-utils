@@ -19,7 +19,7 @@
   @include mu-create-utility(
     u-break-all,
     (
-      word-break: normal
+      word-break: all
     ),
     $pseudo,
     $responsive

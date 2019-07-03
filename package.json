@@ -1,6 +1,6 @@
 {
   "name": "mu-utils",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "ITCSS-compatible utilitary CSS written entirely in SCSS",
   "main": "main.scss",
   "scripts": {
