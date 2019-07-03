@@ -1,6 +1,6 @@
 {
   "name": "mu-utils",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "ITCSS-compatible utilitary CSS written entirely in SCSS",
   "main": "main.scss",
   "scripts": {
@@ -8,7 +8,8 @@
   },
   "keywords": [
     "utilitary-css",
-    "scss"
+    "scss",
+    "scss-mixins"
   ],
   "author": "yukipastelcat, Egor Vdovenko",
   "license": "MIT",
@@ -16,5 +17,9 @@
     "jest": "^24.8.0",
     "node-sass": "^4.12.0",
     "sass-true": "^5.0.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/yukipastelcat/mu-utils.git"
   }
 }
