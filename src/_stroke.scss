@@ -1,0 +1,12 @@
+﻿@mixin mu-stroke($pseudo: (), $responsive: (),  $values: $mu-default-theme) {
+  @each $key, $value in $values {
+    @include mu-create-utility(
+      u-stroke-#{$key},
+      (
+        stroke: $value
+      ),
+      $pseudo,
+      $responsive
+    );
+  }
+}

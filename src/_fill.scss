@@ -1,0 +1,12 @@
+﻿@mixin mu-fill($pseudo: (), $responsive: (),  $values: $mu-default-theme) {
+  @each $key, $value in $values {
+    @include mu-create-utility(
+      u-fill-#{$key},
+      (
+        fill: $value
+      ),
+      $pseudo,
+      $responsive
+    );
+  }
+}
